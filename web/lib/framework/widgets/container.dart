@@ -6,7 +6,7 @@ class Container extends Widget {
   WidgetRef ref;
   GestureDetector gestureDetector;
   Widget child;
-  String color;
+  Colors color;
   Flex flex;
   Size size;
   Margin margin;
@@ -30,7 +30,7 @@ class Container extends Widget {
       ..display = 'flex'
       ..flex = '1'
       ..boxSizing = 'border-box'
-      ..backgroundColor = color;
+      ..backgroundColor = color?.color;
   }
 
 

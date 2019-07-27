@@ -7,7 +7,7 @@ import '../helper/widget.dart';
 class Image extends Widget {
   WidgetRef ref;
   String src;
-  String color;
+  Colors color;
   Border border;
   Shadow shadow;
 
@@ -23,7 +23,7 @@ class Image extends Widget {
     element.style
       ..flex = '1'
       ..backgroundImage = 'url("${src}")'
-      ..backgroundColor = color ?? 'white'
+      ..backgroundColor = color?.color ?? Colors.white
       ..backgroundPosition = 'center'
       ..backgroundSize = 'cover' // cover or contain
       ..backgroundRepeat = 'no-repeat';

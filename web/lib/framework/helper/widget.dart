@@ -2,8 +2,6 @@ import 'dart:html';
 
 import 'package:meta/meta.dart';
 
-import 'color.dart';
-
 class Widget {
   Element element;
   Widget child;
@@ -180,7 +178,7 @@ class Padding {
 }
 
 class Border {
-  String color;
+  Colors color;
   double width;
   String style;
   double radius;
@@ -189,7 +187,7 @@ class Border {
 
   applyTo(Widget widget) {
     widget.element.style
-      ..borderColor = color ?? Colors.black.black
+      ..borderColor = color?.color ?? Colors.black
       ..borderWidth = '${width}px'
       ..borderStyle = style
       ..borderRadius = '${radius}px';
@@ -201,7 +199,7 @@ class Shadow {
   double y;
   double blur;
   double spread;
-  String color;
+  Colors color;
 
   Shadow({
     this.x = 0,
@@ -213,7 +211,7 @@ class Shadow {
 
   applyTo(Widget widget) {
     widget.element.style.boxShadow =
-        '${x}px ${y}px ${blur}px ${spread}px ${color ?? Colors.black.black}';
+        '${x}px ${y}px ${blur}px ${spread}px ${color?.color ?? Colors.black}';
   }
 }
 
@@ -250,4 +248,18 @@ class GestureDetector {
   applyTo(Widget widget) {
     if (onTap != null) widget.element.addEventListener('click', onTap);
   }
+}
+
+class Colors {
+  final String color;
+
+  const Colors._(this.color);
+
+  static const transparent = Colors._('transparent');
+  static const white = Colors._('#ffffff');
+  static const black = Colors._('#000000');
+  static const grey = Colors._('#808080');
+  static const red = Colors._('#ab5454');
+  static const blue = Colors._('#5488ab');
+  static const green = Colors._('#54ab60');
 }

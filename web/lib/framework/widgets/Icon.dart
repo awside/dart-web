@@ -8,7 +8,7 @@ class Icon extends Widget {
   WidgetRef ref;
   SvgElement icon;
   double size;
-  String color;
+  Colors color;
 
   Icon({
     this.ref,
@@ -21,7 +21,7 @@ class Icon extends Widget {
   render() {
     ref?.applyTo(this);
     Size.strict(width: size, height: size)..applyTo(this);
-    (element as SvgElement).attributes['fill'] = color;
+    (element as SvgElement).attributes['fill'] = color?.color;
   }
 }
 
