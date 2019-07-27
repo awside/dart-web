@@ -23,7 +23,7 @@ class Image extends Widget {
     element.style
       ..flex = '1'
       ..backgroundImage = 'url("${src}")'
-      ..backgroundColor = color?.color ?? Colors.white
+      ..backgroundColor = color?.color ?? Colors.white.color
       ..backgroundPosition = 'center'
       ..backgroundSize = 'cover' // cover or contain
       ..backgroundRepeat = 'no-repeat';

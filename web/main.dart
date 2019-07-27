@@ -23,8 +23,8 @@ var testImage = Container(
   size: Size.ratio(ratio: 0.7, maxHeight: 1000),
   child: Row(
     children: [
-      Image(src: 'house1.jpg'),
-      Image(src: 'house2.jpg'),
+      Image(src: 'images/house1.jpg'),
+      Image(src: 'images/house2.jpg'),
     ],
   ),
 );

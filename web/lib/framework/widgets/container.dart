@@ -25,14 +25,16 @@ class Container extends Widget {
     this.padding,
     this.border,
     this.shadow,
-  }) : super(element: DivElement(), child: child) {
+  }) : super(
+          element: DivElement(),
+          child: child,
+        ) {
     element.style
       ..display = 'flex'
       ..flex = '1'
       ..boxSizing = 'border-box'
       ..backgroundColor = color?.color;
   }
-
 
   @override
   render() {

@@ -187,7 +187,7 @@ class Border {
 
   applyTo(Widget widget) {
     widget.element.style
-      ..borderColor = color?.color ?? Colors.black
+      ..borderColor = color?.color ?? Colors.black.color
       ..borderWidth = '${width}px'
       ..borderStyle = style
       ..borderRadius = '${radius}px';
@@ -211,7 +211,7 @@ class Shadow {
 
   applyTo(Widget widget) {
     widget.element.style.boxShadow =
-        '${x}px ${y}px ${blur}px ${spread}px ${color?.color ?? Colors.black}';
+        '${x}px ${y}px ${blur}px ${spread}px ${color?.color ?? Colors.black.color}';
   }
 }
 
