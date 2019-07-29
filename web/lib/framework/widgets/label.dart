@@ -22,7 +22,7 @@ class Label extends Widget {
         ) {
     element.text = text;
     element.style
-      ..fontSize = '${fontSize}px'
+      ..fontSize = '${fontSize ?? 16}px'
       ..fontStyle = italic ? 'italic' : ''
       ..color = color?.color;
   }

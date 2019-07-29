@@ -44,22 +44,22 @@ class WidgetRef {
 class Flex {
   final String display;
   final int flex;
-  final String justifyContent;
-  final String alignItems;
+  final String horizontalAlign;
+  final String verticalAlign;
 
   Flex({
     this.display,
     this.flex,
-    this.justifyContent,
-    this.alignItems,
+    this.horizontalAlign,
+    this.verticalAlign,
   });
 
   applyTo(Widget widget) {
     widget.element.style
-      ..display = display
-      ..flex = flex.toString()
-      ..justifyContent = justifyContent
-      ..alignItems = alignItems;
+      ..display = display ?? 'flex'
+      ..flex = flex?.toString() ?? '1'
+      ..justifyContent = horizontalAlign
+      ..alignItems = verticalAlign;
   }
 }
 
@@ -106,10 +106,16 @@ class Size {
     applyTo = (Widget widget) {
       final resize = (Widget widget) {
         var height = widget.element.offsetWidth * ratio;
-        if (height >= maxHeight) {
-          widget.element.style.maxHeight = '${maxHeight}px';
+        if (height >= maxHeight ?? double.infinity) {
+          widget.element.style
+            ..minHeight = '${maxHeight}px'
+            ..height = '${maxHeight}px'
+            ..maxHeight = '${maxHeight}px';
         } else {
-          widget.element.style.maxHeight = '${height}px';
+          widget.element.style
+            ..minHeight = '${height}px'
+            ..height = '${height}px'
+            ..maxHeight = '${height}px';
         }
       };
       resize(widget);
@@ -253,6 +259,7 @@ class GestureDetector {
 class Colors {
   final String color;
 
+  const Colors(this.color);
   const Colors._(this.color);
 
   static const transparent = Colors._('transparent');

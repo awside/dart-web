@@ -13,12 +13,15 @@ class Stack extends Widget {
           element: DivElement(),
           children: children,
         ) {
-    for (var child in children) {
-      child.element.style.position = 'absolute';
-    }
     element.style
-      ..display = 'flex'
+      ..display = 'grid'
+      ..alignContent = 'center'
       ..flex = '1';
+    for (var child in children) {
+      child.element.style
+        ..gridColumn = '1'
+        ..gridRow = '1';
+    }
   }
 
   @override
