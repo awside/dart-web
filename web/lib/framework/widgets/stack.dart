@@ -14,9 +14,10 @@ class Stack extends Widget {
           children: children,
         ) {
     element.style
+      ..flex = '1'
       ..display = 'grid'
-      ..alignContent = 'center'
-      ..flex = '1';
+      ..alignItems = 'stretch';
+
     for (var child in children) {
       child.element.style
         ..gridColumn = '1'

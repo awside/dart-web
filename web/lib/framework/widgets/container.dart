@@ -30,8 +30,8 @@ class Container extends Widget {
           child: child,
         ) {
     element.style
-      ..display = 'flex'
       ..flex = '1'
+      ..display = 'flex'
       ..boxSizing = 'border-box'
       ..backgroundColor = color?.color;
   }

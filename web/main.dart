@@ -8,7 +8,6 @@ import 'lib/framework/widgets/column.dart';
 import 'lib/framework/widgets/container.dart';
 import 'lib/framework/widgets/image.dart';
 import 'lib/framework/widgets/label.dart';
-import 'lib/framework/widgets/row.dart';
 import 'lib/framework/widgets/stack.dart';
 
 void main() {
@@ -23,49 +22,24 @@ class MyBox extends Component {
     return Container(
       flex: Flex(horizontalAlign: 'center'),
       size: Size.minMax(width: [0, 1600]),
-      child: Column(children: [
-        Container(
-          size: Size.ratio(ratio: 0.7, maxHeight: 600),
-          child: Stack(
-            children: [
-              Container(
-                color: Colors.red,
-                child: Image(
-                  border: Border(
-                    color: Colors.white,
-                    width: 20,
-                  ),
-                  src: 'images/house2.jpg',
-                ),
-              ),
-              Container(
-              size: Size.strict(height: 200),
-              color: Colors.transparent,
-              flex: Flex(
-                horizontalAlign: 'center',
-                verticalAlign: 'center',
-              ),
-              child: Label(
-                nouns.take(5).map((f) => f.toUpperCase()).join(' '),
-                color: Colors.red,
-              ),
-              )
-            ],
+      child: Container(
+        color: Colors.blue,
+        size: Size.ratio(ratio: 0.7, maxHeight: 500),
+        child: Stack(children: [
+          Container(
+            child: Image(src: 'images/house1.jpg'),
           ),
-        ),
-        Container(
-          size: Size.strict(height: 200),
-          color: Colors('#ffeecc'),
-          flex: Flex(
-            horizontalAlign: 'center',
-            verticalAlign: 'center',
+          Container(
+            flex: Flex(horizontalAlign: 'center', verticalAlign: 'center'),
+            child: Label(
+              'Hello World',
+              fontSize: 30,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          child: Label(
-            nouns.take(5).map((f) => f.toUpperCase()).join(' '),
-            color: Colors.red,
-          ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
