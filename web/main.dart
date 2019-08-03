@@ -8,12 +8,11 @@ import 'lib/framework/widgets/label.dart';
 import 'lib/framework/widgets/stack.dart';
 
 void main() {
-  MyBox(querySelector('#output'));
+  var myBox = MyBox();
+  myBox.setAttachmentPoint(querySelector('#output'));
 }
 
 class MyBox extends Component {
-  MyBox(Element attachmentPoint) : super(attachmentPoint);
-
   @override
   Widget build() {
     return Container(
