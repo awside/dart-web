@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'lib/framework/helper/component.dart';
 import 'lib/framework/helper/widget.dart';
+import 'lib/framework/widgets/attributes/margin.dart';
+import 'lib/framework/widgets/attributes/size.dart';
 import 'lib/framework/widgets/container.dart';
 
 void main() {
@@ -13,7 +15,11 @@ class MyBox extends Component {
   var ref = WidgetRef<Container>();
 
   handleClick() {
-    print(ref.widget.margin.left);
+    ref.widget.size
+      ..duration = 300
+      ..widthPercentage = 50
+      ..heightPercentage = 50
+      ..widthPercentage = 90;
   }
 
   @override
@@ -23,9 +29,9 @@ class MyBox extends Component {
       gestureDetector: GestureDetector(
         onTap: (e) => handleClick(),
       ),
-      size: Size.strict(height: 400),
-      color: Colors.green,
-      margin: Margin.all(10),
+      size: SizeA(),
+      color: Colors.blue,
+      // margin: MarginA.LTRB(50, 50, 50, 50),
       duration: 300,
     );
   }

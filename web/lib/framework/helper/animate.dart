@@ -3,42 +3,46 @@ import 'package:meta/meta.dart';
 import 'ticker.dart';
 
 class AnimationController {
-  double duration;
+  double _duration;
   double _startTime;
-  double startValue;
-  double endValue;
-  Function(double) callback;
-  Function() complete;
-  Curves curve;
-  String tickerID;
+  double _startValue;
+  double _endValue;
+  Function(double) _animation;
+  Function() _complete;
+  Curves _curve;
+  String _tickerID;
 
-  AnimationController(
-      {@required this.startValue,
-      @required this.endValue,
-      @required this.duration,
-      this.curve = Curves.linear});
-
-  animate(
-      {@required Function(double) callback, @required Function() complete}) {
-    this.callback = callback;
-    this.complete = complete;
+  animate({
+    @required double startValue,
+    @required double endValue,
+    @required double duration,
+    @required Function(double) animation,
+    Function() complete,
+    Curves curve,
+  }) {
+    this._startValue = startValue;
+    this._endValue = endValue;
+    this._duration = duration;
+    this._animation = animation;
+    this._complete = complete ?? () {};
+    this._curve = curve ?? Curves.linear;
     _startTime = null;
-    Ticker.instance.remove(tickerID);
-    tickerID = Ticker.instance.add(_loop);
+    Ticker.instance.remove(_tickerID);
+    _tickerID = Ticker.instance.add(_loop);
   }
 
   _loop(num n) {
     if (_startTime == null) _startTime = n;
     var elapsedTime = n - _startTime;
-    if (elapsedTime >= duration) {
-      callback(endValue);
-      complete();
-      Ticker.instance.remove(tickerID);
+    if (elapsedTime >= _duration) {
+      _animation(_endValue);
+      _complete?.call();
+      Ticker.instance.remove(_tickerID);
       return;
     }
-    callback(
-        (endValue - startValue) * calcCurve(curve, elapsedTime / duration) +
-            startValue);
+    _animation(
+        (_endValue - _startValue) * calcCurve(_curve, elapsedTime / _duration) +
+            _startValue);
   }
 }
 
