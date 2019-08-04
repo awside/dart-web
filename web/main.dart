@@ -3,9 +3,6 @@ import 'dart:html';
 import 'lib/framework/helper/component.dart';
 import 'lib/framework/helper/widget.dart';
 import 'lib/framework/widgets/container.dart';
-import 'lib/framework/widgets/image.dart';
-import 'lib/framework/widgets/label.dart';
-import 'lib/framework/widgets/stack.dart';
 
 void main() {
   var myBox = MyBox();
@@ -13,14 +10,23 @@ void main() {
 }
 
 class MyBox extends Component {
+  var ref = WidgetRef<Container>();
+
+  handleClick() {
+    print(ref.widget.margin.left);
+  }
+
   @override
   Widget build() {
     return Container(
-      flex: Flex(horizontalAlign: 'center', verticalAlign: 'center'),
-      size: Size.strict(height: 400),
-      child: Container(
-        color: Colors.blue,
+      ref: ref,
+      gestureDetector: GestureDetector(
+        onTap: (e) => handleClick(),
       ),
+      size: Size.strict(height: 400),
+      color: Colors.green,
+      margin: Margin.all(10),
+      duration: 300,
     );
   }
 }

@@ -13,6 +13,7 @@ class Container extends Widget {
   Padding padding;
   Border border;
   Shadow shadow;
+  double duration;
 
   Container({
     this.ref,
@@ -25,6 +26,7 @@ class Container extends Widget {
     this.padding,
     this.border,
     this.shadow,
+    this.duration,
   }) : super(
           element: DivElement(),
           child: child,

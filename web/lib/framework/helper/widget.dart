@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:meta/meta.dart';
 
+
 class Widget {
   Element element;
   Widget child;
@@ -33,11 +34,11 @@ class Widget {
   render() {}
 }
 
-class WidgetRef {
-  Widget widget;
+class WidgetRef<T> {
+  T widget;
 
   applyTo(Widget widget) {
-    return this.widget = widget;
+    return this.widget = widget as T;
   }
 }
 

@@ -4,12 +4,14 @@ import 'widget.dart';
 
 abstract class Component {
   Widget widget;
+  Element _attachmentPoint;
 
   setAttachmentPoint(Element attachmentPoint) {
+    this._attachmentPoint = attachmentPoint;
     widget = build();
-    attachmentPoint.children.add(widget.element);
     widget.render();
     widget.renderChildren();
+    _attachmentPoint.children.add(widget.element);
   }
 
   Widget build();
