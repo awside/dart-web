@@ -37,6 +37,5 @@ body {
 #output {
   display: flex;
   width: 100vw;
-  height: 200px;
   justify-content: center;
 }

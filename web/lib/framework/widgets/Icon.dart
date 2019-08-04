@@ -3,24 +3,26 @@ import 'dart:svg';
 import 'package:meta/meta.dart';
 
 import '../helper/widget.dart';
+import 'attributes/size.dart';
 
 class Icon extends Widget {
   WidgetRef ref;
   SvgElement icon;
-  double size;
+  Size size;
   Colors color;
 
   Icon({
     this.ref,
     @required this.icon,
-    @required this.size,
+    this.size,
     this.color,
   }) : super(element: icon);
 
   @override
   render() {
     ref?.applyTo(this);
-    Size.strict(width: size, height: size)..applyTo(this);
+    size ??= Size();
+    size.applyTo(this);
     (element as SvgElement).attributes['fill'] = color?.color;
   }
 }

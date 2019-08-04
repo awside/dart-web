@@ -1,7 +1,7 @@
 import 'dart:html';
 
 import '../helper/widget.dart';
-import 'attributes/margin.dart';
+import 'attributes/padding.dart';
 import 'attributes/size.dart';
 
 class Container extends Widget {
@@ -9,8 +9,8 @@ class Container extends Widget {
   GestureDetector gestureDetector;
   Widget child;
   Colors color;
-  SizeA size;
-  MarginA margin;
+  Size size;
+  Padding padding;
   double duration;
 
   Container({
@@ -19,22 +19,22 @@ class Container extends Widget {
     this.child,
     this.color,
     this.size,
-    this.margin,
+    this.padding,
     this.duration,
   }) : super(
           element: DivElement(),
           child: child,
-        ) {
-    element.style
-      ..boxSizing = 'border-box'
-      ..backgroundColor = color?.color;
-  }
+        );
 
   @override
   render() {
+    element.style
+      ..boxSizing = 'border-box'
+      ..backgroundColor = color?.color;
     ref?.applyTo(this);
     gestureDetector?.applyTo(this);
-    size?.applyTo(this);
-    margin?.applyTo(this);
+    size ??= Size();
+    size.applyTo(this);
+    padding?.applyTo(this);
   }
 }

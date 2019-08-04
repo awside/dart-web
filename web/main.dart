@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'lib/framework/helper/component.dart';
 import 'lib/framework/helper/widget.dart';
-import 'lib/framework/widgets/attributes/margin.dart';
+import 'lib/framework/widgets/attributes/padding.dart';
 import 'lib/framework/widgets/attributes/size.dart';
 import 'lib/framework/widgets/container.dart';
 
@@ -29,10 +29,12 @@ class MyBox extends Component {
       gestureDetector: GestureDetector(
         onTap: (e) => handleClick(),
       ),
-      size: SizeA(),
+      size: Size(height: 200),
       color: Colors.blue,
-      // margin: MarginA.LTRB(50, 50, 50, 50),
-      duration: 300,
+      padding: Padding(30),
+      child: Container(
+        color: Colors.green,
+      ),
     );
   }
 }

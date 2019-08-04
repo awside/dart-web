@@ -9,9 +9,9 @@ abstract class Component {
   setAttachmentPoint(Element attachmentPoint) {
     this._attachmentPoint = attachmentPoint;
     widget = build();
+    _attachmentPoint.children.add(widget.element);
     widget.render();
     widget.renderChildren();
-    _attachmentPoint.children.add(widget.element);
   }
 
   Widget build();

@@ -1,25 +1,55 @@
 import '../../helper/animate.dart';
 import '../../helper/widget.dart';
 
-class SizeA {
+class Size {
   Widget widget;
   double duration = 0;
-  double _width;
-  double _height;
-  double _widthPercentage;
-  double _heightPercentage;
+  double __width;
+  double __height;
+  double __widthPercentage;
+  double __heightPercentage;
   var _widthAnimationController = AnimationController();
   var _heightAnimationController = AnimationController();
 
-  SizeA({
+  Size({
     double width,
     double height,
     double widthPercentage,
     double heightPercentage,
-  })  : this._width = width,
-        this._height = height,
-        this._widthPercentage = widthPercentage ?? 100,
-        this._heightPercentage = heightPercentage ?? 100;
+  })  : this.__width = width,
+        this.__height = height,
+        this.__widthPercentage = widthPercentage ?? 100,
+        this.__heightPercentage = heightPercentage ?? 100;
+
+  set _width(double width) {
+    widget.element.style.width = '${__width}px';
+  }
+
+  set _height(double height) {
+    widget.element.style.height = '${__height}px';
+  }
+
+  set _widthPercentage(double width) {
+    widget.element.style.width = '${__widthPercentage}%';
+  }
+
+  set _heightPercentage(double height) {
+    widget.element.style.height = '${__heightPercentage}%';
+  }
+
+  applyTo(Widget widget) {
+    this.widget = widget;
+    if (__width != null) {
+      _width = __width;
+    } else {
+      _widthPercentage = __widthPercentage;
+    }
+    if (__height != null) {
+      _height = __height;
+    } else {
+      _heightPercentage = __heightPercentage;
+    }
+  }
 
   set width(double width) {
     _widthAnimationController.animate(
@@ -28,7 +58,6 @@ class SizeA {
       endValue: width,
       animation: (double value) {
         _width = value;
-        widget.element.style.width = '${_width}px';
       },
     );
   }
@@ -40,7 +69,6 @@ class SizeA {
       endValue: height,
       animation: (double value) {
         _height = value;
-        widget.element.style.height = '${_height}px';
       },
     );
   }
@@ -53,7 +81,6 @@ class SizeA {
       endValue: width,
       animation: (double value) {
         _widthPercentage = value;
-        widget.element.style.width = '${_widthPercentage}%';
       },
     );
   }
@@ -61,20 +88,13 @@ class SizeA {
   set heightPercentage(double height) {
     _heightAnimationController.animate(
       duration: duration,
-      startValue:
-          widget.element.offsetHeight / widget.element.parent.offsetHeight * 100,
+      startValue: widget.element.offsetHeight /
+          widget.element.parent.offsetHeight *
+          100,
       endValue: height,
       animation: (double value) {
         _heightPercentage = value;
-        widget.element.style.height = '${_heightPercentage}%';
       },
     );
-  }
-
-  applyTo(Widget widget) {
-    this.widget = widget;
-    widget.element.style
-      ..width = _width != null ? '${_width}px' : '${_widthPercentage}%'
-      ..height = _height != null ? '${_height}px' : '${_heightPercentage}%';
   }
 }

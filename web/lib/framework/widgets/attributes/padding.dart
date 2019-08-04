@@ -1,7 +1,7 @@
 import '../../helper/animate.dart';
 import '../../helper/widget.dart';
 
-class MarginA {
+class Padding {
   Widget widget;
   double duration = 0;
   double _left;
@@ -13,14 +13,14 @@ class MarginA {
   var _rightAnimationController = AnimationController();
   var _bottomAnimationController = AnimationController();
 
-  MarginA.all(double value) {
+  Padding(double value) {
     _left = value;
     _top = value;
     _right = value;
     _bottom = value;
   }
 
-  MarginA.LTRB(
+  Padding.LTRB(
     double left,
     double top,
     double right,
@@ -30,7 +30,7 @@ class MarginA {
         this._right = right,
         this._bottom = bottom;
 
-  MarginA.only({
+  Padding.only({
     double left,
     double top,
     double right,
@@ -49,7 +49,7 @@ class MarginA {
       endValue: left,
       animation: (double value) {
         _left = value;
-        widget.element.style.marginLeft = '${_left}px';
+        widget.element.style.paddingLeft = '${_left}px';
       },
     );
   }
@@ -61,7 +61,7 @@ class MarginA {
       endValue: top,
       animation: (double value) {
         _top = value;
-        widget.element.style.marginTop = '${_top}px';
+        widget.element.style.paddingTop = '${_top}px';
       },
     );
   }
@@ -73,7 +73,7 @@ class MarginA {
       endValue: right,
       animation: (double value) {
         _right = value;
-        widget.element.style.marginRight = '${_right}px';
+        widget.element.style.paddingRight = '${_right}px';
       },
     );
   }
@@ -85,7 +85,7 @@ class MarginA {
       endValue: bottom,
       animation: (double value) {
         _bottom = value;
-        widget.element.style.marginBottom = '${_bottom}px';
+        widget.element.style.paddingBottom = '${_bottom}px';
       },
     );
   }
@@ -93,9 +93,9 @@ class MarginA {
   applyTo(Widget widget) {
     this.widget = widget;
     widget.element.style
-      ..marginLeft = '${_left}px'
-      ..marginTop = '${_top}px'
-      ..marginRight = '${_right}px'
-      ..marginBottom = '${_bottom}px';
+      ..paddingLeft = '${_left}px'
+      ..paddingTop = '${_top}px'
+      ..paddingRight = '${_right}px'
+      ..paddingBottom = '${_bottom}px';
   }
 }
