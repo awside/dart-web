@@ -27,8 +27,12 @@ class AnimationController {
     this._complete = complete ?? () {};
     this._curve = curve ?? Curves.linear;
     _startTime = null;
-    Ticker.instance.remove(_tickerID);
+    stop();
     _tickerID = Ticker.instance.add(_loop);
+  }
+
+  stop() {
+    Ticker.instance.remove(_tickerID);
   }
 
   _loop(num n) {

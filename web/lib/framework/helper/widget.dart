@@ -1,7 +1,9 @@
 import 'dart:html';
 
 import 'package:meta/meta.dart';
+import "package:hex/hex.dart";
 
+import 'animation_controller.dart';
 
 class Widget {
   Element element;
@@ -42,68 +44,6 @@ class WidgetRef<T> {
   }
 }
 
-class Flex {
-  final String display;
-  final int flex;
-  final String horizontalAlign;
-  final String verticalAlign;
-
-  Flex({
-    this.display,
-    this.flex,
-    this.horizontalAlign,
-    this.verticalAlign,
-  });
-
-  applyTo(Widget widget) {
-    widget.element.style
-      ..display = display ?? 'flex'
-      ..flex = flex?.toString() ?? '1'
-      ..justifyContent = horizontalAlign
-      ..alignItems = verticalAlign;
-  }
-}
-
-
-
-class Border {
-  Colors color;
-  double width;
-  String style;
-  double radius;
-
-  Border({this.color, this.width = 1, this.style = 'solid', this.radius});
-
-  applyTo(Widget widget) {
-    widget.element.style
-      ..borderColor = color?.color ?? Colors.black.color
-      ..borderWidth = '${width}px'
-      ..borderStyle = style
-      ..borderRadius = '${radius}px';
-  }
-}
-
-class Shadow {
-  double x;
-  double y;
-  double blur;
-  double spread;
-  Colors color;
-
-  Shadow({
-    this.x = 0,
-    this.y = 0,
-    this.blur = 0,
-    this.spread = 0,
-    this.color,
-  });
-
-  applyTo(Widget widget) {
-    widget.element.style.boxShadow =
-        '${x}px ${y}px ${blur}px ${spread}px ${color?.color ?? Colors.black.color}';
-  }
-}
-
 class FontWeight {
   final int index;
 
@@ -140,16 +80,48 @@ class GestureDetector {
 }
 
 class Colors {
-  final String color;
+  int _red;
+  int _green;
+  int _blue;
+  double _alpha;
+  var _alphaAnimationController = AnimationController();
 
-  const Colors(this.color);
-  const Colors._(this.color);
+  Colors._(String color, {double alpha}) {
+    _alpha = alpha ?? 1;
+    var decodedColor = HEX.decode(color.replaceAll('#', ''));
+    _red = decodedColor[0];
+    _green = decodedColor[1];
+    _blue = decodedColor[2];
+  }
 
-  static const transparent = Colors._('transparent');
-  static const white = Colors._('#ffffff');
-  static const black = Colors._('#000000');
-  static const grey = Colors._('#808080');
-  static const red = Colors._('#ab5454');
-  static const blue = Colors._('#5488ab');
-  static const green = Colors._('#54ab60');
+  String get color => 'rgba(${_red}, ${_green}, ${_blue}, ${_alpha})';
+
+  alpha(double a) {
+    _alpha = a;
+    _alphaAnimationController.stop();
+    return this;
+  }
+
+  animateAlpha(
+      {@required double alpha,
+      @required double duration,
+      @required Function() callback}) {
+    _alphaAnimationController.animate(
+      duration: duration,
+      startValue: this._alpha,
+      endValue: alpha,
+      animation: (double value) {
+        _alpha = value;
+        callback();
+      },
+    );
+  }
+
+  static Colors get transparent => Colors._('#ffffff', alpha: 0);
+  static Colors get white => Colors._('#ffffff');
+  static Colors get black => Colors._('#000000');
+  static Colors get grey => Colors._('#808080');
+  static Colors get red => Colors._('#ab5454');
+  static Colors get blue => Colors._('#5488ab');
+  static Colors get green => Colors._('#54ab60');
 }

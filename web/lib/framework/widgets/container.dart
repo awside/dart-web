@@ -1,7 +1,10 @@
 import 'dart:html';
 
 import '../helper/widget.dart';
+import 'attributes/border.dart';
 import 'attributes/padding.dart';
+import 'attributes/position.dart';
+import 'attributes/shadow.dart';
 import 'attributes/size.dart';
 
 class Container extends Widget {
@@ -11,6 +14,9 @@ class Container extends Widget {
   Colors color;
   Size size;
   Padding padding;
+  Position position;
+  Border border;
+  Shadow shadow;
   double duration;
 
   Container({
@@ -20,6 +26,9 @@ class Container extends Widget {
     this.color,
     this.size,
     this.padding,
+    this.position,
+    this.border,
+    this.shadow,
     this.duration,
   }) : super(
           element: DivElement(),
@@ -29,6 +38,7 @@ class Container extends Widget {
   @override
   render() {
     element.style
+      ..overflow = 'hidden'
       ..boxSizing = 'border-box'
       ..backgroundColor = color?.color;
     ref?.applyTo(this);
@@ -36,5 +46,8 @@ class Container extends Widget {
     size ??= Size();
     size.applyTo(this);
     padding?.applyTo(this);
+    position?.applyTo(this);
+    border?.applyTo(this);
+    shadow?.applyTo(this);
   }
 }

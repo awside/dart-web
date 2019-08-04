@@ -1,4 +1,4 @@
-import '../../helper/animate.dart';
+import '../../helper/animation_controller.dart';
 import '../../helper/widget.dart';
 
 class Padding {

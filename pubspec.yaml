@@ -17,3 +17,4 @@ dev_dependencies:
   # mine below
   nanoid: ^0.1.0
   english_words: ^3.1.5
+  hex: ^0.1.2
