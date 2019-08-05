@@ -1,18 +1,14 @@
+import '../../helper/animated_double.dart';
 import '../../helper/animation_controller.dart';
 import '../../helper/widget.dart';
 
 class Shadow {
   Widget widget;
-  double duration = 0;
-  double _x;
-  double _y;
-  double _blur;
-  double _spread;
   Colors _color;
-  var _xAnimationController = AnimationController();
-  var _yAnimationController = AnimationController();
-  var _blurAnimationController = AnimationController();
-  var _spreadAnimationController = AnimationController();
+  AnimatedDouble _animX;
+  AnimatedDouble _animY;
+  AnimatedDouble _animBlur;
+  AnimatedDouble _animSpread;
 
   Shadow({
     double x,
@@ -21,114 +17,58 @@ class Shadow {
     double spread,
     Colors color,
   }) {
-    this._x = x ?? 0;
-    this._y = y ?? 0;
-    this._blur = blur ?? 0;
-    this._spread = spread ?? 0;
-    this._color = color ?? Colors.black;
+    _color = color ?? Colors.black;
+    _animX = AnimatedDouble(x ?? 0);
+    _animY = AnimatedDouble(y ?? 0);
+    _animBlur = AnimatedDouble(blur ?? 0);
+    _animSpread = AnimatedDouble(spread ?? 0);
+    _animX.stream.listen((v) {
+      widget.element.style.boxShadow =
+          '${v}px ${_animY.value}px ${_animBlur.value}px ${_animSpread.value}px ${_color.color}';
+    });
+    _animY.stream.listen((v) {
+      widget.element.style.boxShadow =
+          '${_animX.value}px ${v}px ${_animBlur.value}px ${_animSpread.value}px ${_color.color}';
+    });
+    _animBlur.stream.listen((v) {
+      widget.element.style.boxShadow =
+          '${_animX.value}px ${_animY.value}px ${v}px ${_animSpread.value}px ${_color.color}';
+    });
+    _animSpread.stream.listen((v) {
+      widget.element.style.boxShadow =
+          '${_animX.value}px ${_animY.value}px ${_animBlur.value}px ${v}px ${_color.color}';
+    });
   }
 
   applyTo(Widget widget) {
     this.widget = widget;
     widget.element.style.boxShadow =
-        '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
+        '${_animX.value}px ${_animY.value}px ${_animBlur.value}px ${_animSpread.value}px ${_color.color}';
   }
 
-  set x(double x) {
-    if (duration == 0) {
-      _xAnimationController.stop();
-      _x = x;
-      widget.element.style.boxShadow =
-          '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      return;
-    }
-    _xAnimationController.animate(
-      duration: duration,
-      startValue: this._x,
-      endValue: x,
-      animation: (double value) {
-        _x = value;
-        widget.element.style.boxShadow =
-            '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      },
-    );
+  set duration(double duration) {
+    _animX.duration = duration;
+    _animY.duration = duration;
+    _animBlur.duration = duration;
+    _animSpread.duration = duration;
   }
 
-  set y(double y) {
-    if (duration == 0) {
-      _yAnimationController.stop();
-      _y = y;
-      widget.element.style.boxShadow =
-          '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      return;
-    }
-    _yAnimationController.animate(
-      duration: duration,
-      startValue: this._y,
-      endValue: y,
-      animation: (double value) {
-        _y = value;
-        widget.element.style.boxShadow =
-            '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      },
-    );
+  set curve(Curves curve) {
+    _animX.curve = curve;
+    _animY.curve = curve;
+    _animBlur.curve = curve;
+    _animSpread.curve = curve;
   }
 
-  set blur(double blur) {
-    if (duration == 0) {
-      _blurAnimationController.stop();
-      _blur = blur;
-      widget.element.style.boxShadow =
-          '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      return;
-    }
-    _blurAnimationController.animate(
-      duration: duration,
-      startValue: this._blur,
-      endValue: blur,
-      animation: (double value) {
-        _blur = value;
-        widget.element.style.boxShadow =
-            '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      },
-    );
-  }
+  get x => _animX.value;
+  set x(double x) => _animX.value = x;
 
-  set spread(double spread) {
-    if (duration == 0) {
-      _spreadAnimationController.stop();
-      _spread = spread;
+  get y => _animY.value;
+  set y(double y) => _animY.value = y;
 
-      widget.element.style.boxShadow =
-          '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      return;
-    }
-    _spreadAnimationController.animate(
-      duration: duration,
-      startValue: this._spread,
-      endValue: spread,
-      animation: (double value) {
-        _spread = value;
-        widget.element.style.boxShadow =
-            '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      },
-    );
-  }
+  get blur => _animBlur.value;
+  set blur(double blur) => _animBlur.value = blur;
 
-  set alpha(double alpha) {
-    if (duration == 0) {
-      _color.alpha(alpha);
-      widget.element.style.boxShadow =
-          '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      return;
-    }
-    _color.animateAlpha(
-      alpha: alpha,
-      duration: duration,
-      callback: () {
-        widget.element.style.boxShadow =
-            '${_x}px ${_y}px ${_blur}px ${_spread}px ${_color.color}';
-      },
-    );
-  }
+  get spread => _animSpread.value;
+  set spread(double spread) => _animSpread.value = spread;
 }

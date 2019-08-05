@@ -19,11 +19,11 @@ class MyBox extends Component {
   var ref = WidgetRef<Container>();
 
   handleClick() {
-    ref.widget.size
-    ..curve = Curves.easeInOutQuad
-    ..duration = 300
-    ..heightPercentage = 50
-    ..width = 100;
+    ref.widget.shadow
+      ..curve = Curves.easeInOutQuad
+      ..duration = 300
+      ..blur = 20
+      ..spread = -5;
   }
 
   @override
@@ -31,6 +31,7 @@ class MyBox extends Component {
     return Container(
       size: Size(height: 200),
       color: Colors.white,
+      padding: Padding(20),
       child: Container(
         ref: ref,
         gestureDetector: GestureDetector(
@@ -39,6 +40,8 @@ class MyBox extends Component {
         color: Colors.blue,
         size: Size(),
         position: Position(),
+        border: Border(),
+        shadow: Shadow(blur: 10),
       ),
     );
   }
