@@ -19,12 +19,11 @@ class MyBox extends Component {
   var ref = WidgetRef<Container>();
 
   handleClick() {
-    ref.widget.position
-      ..curve = Curves.easeInOutQuad
-      ..duration = 0
-      ..x = 0.0
-      ..duration = 200
-      ..x = 50.0;
+    ref.widget.size
+    ..curve = Curves.easeInOutQuad
+    ..duration = 300
+    ..heightPercentage = 50
+    ..width = 100;
   }
 
   @override
@@ -32,13 +31,13 @@ class MyBox extends Component {
     return Container(
       size: Size(height: 200),
       color: Colors.white,
-      padding: Padding(30),
       child: Container(
         ref: ref,
         gestureDetector: GestureDetector(
           onTap: (e) => handleClick(),
         ),
         color: Colors.blue,
+        size: Size(),
         position: Position(),
       ),
     );

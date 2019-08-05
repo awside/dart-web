@@ -1,100 +1,89 @@
+import '../../helper/animated_double.dart';
 import '../../helper/animation_controller.dart';
 import '../../helper/widget.dart';
 
 class Size {
   Widget widget;
-  double duration = 0;
-  double __width;
-  double __height;
-  double __widthPercentage;
-  double __heightPercentage;
-  var _widthAnimationController = AnimationController();
-  var _heightAnimationController = AnimationController();
+  AnimatedDouble _animWidth;
+  AnimatedDouble _animHeight;
+  AnimatedDouble _animWidthPercentage;
+  AnimatedDouble _animHeightPercentage;
 
   Size({
     double width,
     double height,
     double widthPercentage,
     double heightPercentage,
-  })  : this.__width = width,
-        this.__height = height,
-        this.__widthPercentage = widthPercentage ?? 100,
-        this.__heightPercentage = heightPercentage ?? 100;
-
-  set _width(double width) {
-    widget.element.style.width = '${__width}px';
-  }
-
-  set _height(double height) {
-    widget.element.style.height = '${__height}px';
-  }
-
-  set _widthPercentage(double width) {
-    widget.element.style.width = '${__widthPercentage}%';
-  }
-
-  set _heightPercentage(double height) {
-    widget.element.style.height = '${__heightPercentage}%';
+  }) {
+    _animWidth = AnimatedDouble(width);
+    _animHeight = AnimatedDouble(height);
+    _animWidthPercentage = AnimatedDouble(widthPercentage ?? 100);
+    _animHeightPercentage = AnimatedDouble(heightPercentage ?? 100);
+    _animWidth.stream.listen((v) {
+      widget.element.style.width = '${v}px';
+    });
+    _animHeight.stream.listen((v) {
+      widget.element.style.height = '${v}px';
+    });
+    _animWidthPercentage.stream.listen((v) {
+      widget.element.style.width = '${v}%';
+    });
+    _animHeightPercentage.stream.listen((v) {
+      widget.element.style.height = '${v}%';
+    });
   }
 
   applyTo(Widget widget) {
     this.widget = widget;
-    if (__width != null) {
-      _width = __width;
+    if (_animWidth.value != null) {
+      widget.element.style.width = '${_animWidth.value}px';
     } else {
-      _widthPercentage = __widthPercentage;
+      widget.element.style.width = '${_animWidthPercentage.value}%';
     }
-    if (__height != null) {
-      _height = __height;
+    if (_animHeight.value != null) {
+      widget.element.style.height = '${_animHeight.value}px';
     } else {
-      _heightPercentage = __heightPercentage;
+      widget.element.style.height = '${_animHeightPercentage.value}%';
     }
   }
 
+  set duration(double duration) {
+    _animWidth.duration = duration;
+    _animHeight.duration = duration;
+    _animWidthPercentage.duration = duration;
+    _animHeightPercentage.duration = duration;
+  }
+
+  set curve(Curves curve) {
+    _animWidth.curve = curve;
+    _animHeight.curve = curve;
+    _animWidthPercentage.curve = curve;
+    _animHeightPercentage.curve = curve;
+  }
+
+  get width => _animWidth.value;
   set width(double width) {
-    _widthAnimationController.animate(
-      duration: duration,
-      startValue: widget.element.offsetWidth.toDouble(),
-      endValue: width,
-      animation: (double value) {
-        _width = value;
-      },
-    );
+    _animWidth.resetValue = widget.element.offsetWidth.toDouble();
+    _animWidth.value = width;
   }
 
+  get height => _animHeight.value;
   set height(double height) {
-    _heightAnimationController.animate(
-      duration: duration,
-      startValue: widget.element.offsetHeight.toDouble(),
-      endValue: height,
-      animation: (double value) {
-        _height = value;
-      },
-    );
+    _animHeight.resetValue = widget.element.offsetHeight.toDouble();
+    _animHeight.value = height;
   }
 
+  get widthPercentage => _animWidthPercentage;
   set widthPercentage(double width) {
-    _widthAnimationController.animate(
-      duration: duration,
-      startValue:
-          widget.element.offsetWidth / widget.element.parent.offsetWidth * 100,
-      endValue: width,
-      animation: (double value) {
-        _widthPercentage = value;
-      },
-    );
+    _animWidthPercentage.resetValue =
+        widget.element.offsetWidth / widget.element.parent.offsetWidth * 100;
+    _animWidthPercentage.value = width;
   }
 
+  get heightPercentage => _animHeightPercentage;
   set heightPercentage(double height) {
-    _heightAnimationController.animate(
-      duration: duration,
-      startValue: widget.element.offsetHeight /
-          widget.element.parent.offsetHeight *
-          100,
-      endValue: height,
-      animation: (double value) {
-        _heightPercentage = value;
-      },
-    );
+    _animHeightPercentage.resetValue =
+        widget.element.offsetHeight / widget.element.parent.offsetHeight * 100;
+    _animHeightPercentage.value = height;
   }
 }

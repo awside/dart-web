@@ -1,5 +1,5 @@
 import '../../helper/animation_controller.dart';
-import '../../helper/animated_value.dart';
+import '../../helper/animated_double.dart';
 import '../../helper/widget.dart';
 
 class Position {

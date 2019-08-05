@@ -1,15 +1,13 @@
+import '../../helper/animated_double.dart';
 import '../../helper/animation_controller.dart';
 import '../../helper/widget.dart';
 
 class Border {
   Widget widget;
-  double duration = 0;
+  AnimatedDouble _animWidth;
+  AnimatedDouble _animRadius;
   Colors color;
-  double _width;
   String style;
-  double _radius;
-  var _widthAnimationController = AnimationController();
-  var _radiusAnimationController = AnimationController();
 
   Border({
     double width,
@@ -17,42 +15,40 @@ class Border {
     Colors color,
     String style,
   }) {
-    this._width = width ?? 1;
-    this._radius = radius ?? 0;
+    _animWidth = AnimatedDouble(width ?? 1);
+    _animRadius = AnimatedDouble(radius ?? 0);
     this.color = color ?? Colors.black;
     this.style = style ?? 'solid';
+    _animWidth.stream.listen((v) {
+      widget.element.style.borderWidth = '${v}px';
+    });
+    _animRadius.stream.listen((v) {
+      widget.element.style.borderRadius = '${v}px';
+    });
   }
 
   applyTo(Widget widget) {
     this.widget = widget;
     widget.element.style
       ..borderColor = color.color
-      ..borderWidth = '${_width}px'
+      ..borderWidth = '${_animWidth.value}px'
       ..borderStyle = style
-      ..borderRadius = '${_radius}px';
+      ..borderRadius = '${_animRadius.value}px';
   }
 
-  set width(double width) {
-    _widthAnimationController.animate(
-      duration: duration,
-      startValue: this._width,
-      endValue: width,
-      animation: (double value) {
-        _width = value;
-        widget.element.style.borderWidth = '${_width}px';
-      },
-    );
+  set duration(double duration) {
+    _animWidth.duration = duration;
+    _animRadius.duration = duration;
   }
 
-  set radius(double radius) {
-    _radiusAnimationController.animate(
-      duration: duration,
-      startValue: this._radius,
-      endValue: radius,
-      animation: (double value) {
-        _radius = value;
-        widget.element.style.borderRadius = '${_radius}px';
-      },
-    );
+  set curve(Curves curve) {
+    _animWidth.curve = curve;
+    _animRadius.curve = curve;
   }
+
+  get width => _animWidth.value;
+  set width(double width) => _animWidth.value = width;
+
+  get radius => _animRadius.value;
+  set radius(double radius) => _animRadius.value = radius;
 }

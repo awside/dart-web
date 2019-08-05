@@ -9,7 +9,7 @@ class AnimatedDouble {
   var _bloc = Bloc<double>();
 
   AnimatedDouble(double value) {
-    this._value = value ?? 0;
+    this._value = value;
   }
 
   Stream<double> get stream => _bloc.stream;
@@ -32,5 +32,9 @@ class AnimatedDouble {
           _value = value;
           _bloc.sink.add(value);
         });
+  }
+
+  set resetValue(double value) {
+    this._value = value;
   }
 }
