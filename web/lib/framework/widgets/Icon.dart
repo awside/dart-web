@@ -9,13 +9,13 @@ class Icon extends Widget {
   WidgetRef ref;
   SvgElement icon;
   Size size;
-  Colors color;
+  // Colors color;
 
   Icon({
     this.ref,
     @required this.icon,
     this.size,
-    this.color,
+    // this.color,
   }) : super(element: icon);
 
   @override
@@ -23,7 +23,7 @@ class Icon extends Widget {
     ref?.applyTo(this);
     size ??= Size();
     size.applyTo(this);
-    (element as SvgElement).attributes['fill'] = color?.color;
+    // (element as SvgElement).attributes['fill'] = color?.color;
   }
 }
 

@@ -19,18 +19,6 @@ class Size {
     _animHeight = AnimatedDouble(height);
     _animWidthPercentage = AnimatedDouble(widthPercentage ?? 100);
     _animHeightPercentage = AnimatedDouble(heightPercentage ?? 100);
-    _animWidth.stream.listen((v) {
-      widget.element.style.width = '${v}px';
-    });
-    _animHeight.stream.listen((v) {
-      widget.element.style.height = '${v}px';
-    });
-    _animWidthPercentage.stream.listen((v) {
-      widget.element.style.width = '${v}%';
-    });
-    _animHeightPercentage.stream.listen((v) {
-      widget.element.style.height = '${v}%';
-    });
   }
 
   applyTo(Widget widget) {
@@ -45,6 +33,22 @@ class Size {
     } else {
       widget.element.style.height = '${_animHeightPercentage.value}%';
     }
+    _listeners();
+  }
+
+  _listeners() {
+    _animWidth.stream.listen((v) {
+      widget.element.style.width = '${v}px';
+    });
+    _animHeight.stream.listen((v) {
+      widget.element.style.height = '${v}px';
+    });
+    _animWidthPercentage.stream.listen((v) {
+      widget.element.style.width = '${v}%';
+    });
+    _animHeightPercentage.stream.listen((v) {
+      widget.element.style.height = '${v}%';
+    });
   }
 
   set duration(double duration) {

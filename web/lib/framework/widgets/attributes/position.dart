@@ -13,19 +13,22 @@ class Position {
   }) {
     _animX = AnimatedDouble(x ?? 0);
     _animY = AnimatedDouble(y ?? 0);
-    duration = 0;
-    _animX.stream.listen((v) {
-      widget.element.style.transform = 'translateX(${_animX.value}px)';
-    });
-    _animY.stream.listen((v) {
-      widget.element.style.transform = 'translateY(${_animY.value}px)';
-    });
   }
 
   applyTo(Widget widget) {
     this.widget = widget;
     widget.element.style.transform =
         'translate(${_animX.value}px, ${_animY.value}px)';
+    _listeners();
+  }
+
+  _listeners() {
+    _animX.stream.listen((v) {
+      widget.element.style.transform = 'translateX(${_animX.value}px)';
+    });
+    _animY.stream.listen((v) {
+      widget.element.style.transform = 'translateY(${_animY.value}px)';
+    });
   }
 
   set duration(double duration) {

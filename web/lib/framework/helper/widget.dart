@@ -1,9 +1,6 @@
 import 'dart:html';
 
 import 'package:meta/meta.dart';
-import "package:hex/hex.dart";
-
-import 'animation_controller.dart';
 
 class Widget {
   Element element;
@@ -79,49 +76,3 @@ class GestureDetector {
   }
 }
 
-class Colors {
-  int _red;
-  int _green;
-  int _blue;
-  double _alpha;
-  var _alphaAnimationController = AnimationController();
-
-  Colors._(String color, {double alpha}) {
-    _alpha = alpha ?? 1;
-    var decodedColor = HEX.decode(color.replaceAll('#', ''));
-    _red = decodedColor[0];
-    _green = decodedColor[1];
-    _blue = decodedColor[2];
-  }
-
-  String get color => 'rgba(${_red}, ${_green}, ${_blue}, ${_alpha})';
-
-  alpha(double a) {
-    _alpha = a;
-    _alphaAnimationController.stop();
-    return this;
-  }
-
-  animateAlpha(
-      {@required double alpha,
-      @required double duration,
-      @required Function() callback}) {
-    _alphaAnimationController.animate(
-      duration: duration,
-      startValue: this._alpha,
-      endValue: alpha,
-      animation: (double value) {
-        _alpha = value;
-        callback();
-      },
-    );
-  }
-
-  static Colors get transparent => Colors._('#ffffff', alpha: 0);
-  static Colors get white => Colors._('#ffffff');
-  static Colors get black => Colors._('#000000');
-  static Colors get grey => Colors._('#808080');
-  static Colors get red => Colors._('#ab5454');
-  static Colors get blue => Colors._('#5488ab');
-  static Colors get green => Colors._('#54ab60');
-}

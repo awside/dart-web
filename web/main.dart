@@ -4,6 +4,7 @@ import 'lib/framework/helper/animation_controller.dart';
 import 'lib/framework/helper/component.dart';
 import 'lib/framework/helper/widget.dart';
 import 'lib/framework/widgets/attributes/border.dart';
+import 'lib/framework/widgets/attributes/color.dart';
 import 'lib/framework/widgets/attributes/padding.dart';
 import 'lib/framework/widgets/attributes/position.dart';
 import 'lib/framework/widgets/attributes/shadow.dart';
@@ -19,30 +20,18 @@ class MyBox extends Component {
   var ref = WidgetRef<Container>();
 
   handleClick() {
-    ref.widget.shadow
-      ..curve = Curves.easeInOutQuad
-      ..duration = 300
-      ..blur = 20
-      ..spread = -5;
+    ref.widget.color;
   }
 
   @override
   Widget build() {
     return Container(
-      size: Size(height: 200),
-      color: Colors.white,
-      padding: Padding(20),
-      child: Container(
-        ref: ref,
-        gestureDetector: GestureDetector(
-          onTap: (e) => handleClick(),
-        ),
-        color: Colors.blue,
-        size: Size(),
-        position: Position(),
-        border: Border(),
-        shadow: Shadow(blur: 10),
+      ref: ref,
+      gestureDetector: GestureDetector(
+        onTap: (f) => handleClick(),
       ),
+      size: Size(height: 100),
+      color: Colors.green,
     );
   }
 }

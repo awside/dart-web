@@ -2,6 +2,7 @@ import 'dart:html';
 
 import '../helper/widget.dart';
 import 'attributes/border.dart';
+import 'attributes/color.dart';
 import 'attributes/padding.dart';
 import 'attributes/position.dart';
 import 'attributes/shadow.dart';
@@ -23,13 +24,13 @@ class Container extends Widget {
     this.ref,
     this.gestureDetector,
     this.child,
+    this.duration,
     this.color,
     this.size,
     this.padding,
     this.position,
     this.border,
     this.shadow,
-    this.duration,
   }) : super(
           element: DivElement(),
           child: child,
@@ -39,15 +40,15 @@ class Container extends Widget {
   render() {
     element.style
       ..overflow = 'hidden'
-      ..boxSizing = 'border-box'
-      ..backgroundColor = color?.color;
+      ..boxSizing = 'border-box';
     ref?.applyTo(this);
-    gestureDetector?.applyTo(this);
-    size ??= Size();
-    size.applyTo(this);
-    padding?.applyTo(this);
-    position?.applyTo(this);
-    border?.applyTo(this);
-    shadow?.applyTo(this);
+    (gestureDetector ??= GestureDetector()).applyTo(this);
+    color ??= Colors.white;
+    color.stream.listen((v) => element.style.background = v);
+    (size ??= Size()).applyTo(this);
+    (padding ??= Padding()).applyTo(this);
+    (position ??= Position()).applyTo(this);
+    (border ??= Border()).applyTo(this);
+    (shadow ??= Shadow()).applyTo(this);
   }
 }

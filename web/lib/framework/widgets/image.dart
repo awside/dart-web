@@ -9,14 +9,14 @@ import 'attributes/shadow.dart';
 class Image extends Widget {
   WidgetRef ref;
   String src;
-  Colors color;
+  // Colors color;
   Border border;
   Shadow shadow;
 
   Image({
     this.ref,
     @required String src,
-    this.color,
+    // this.color,
     this.border,
     this.shadow,
   }) : super(
@@ -25,7 +25,7 @@ class Image extends Widget {
     element.style
       ..flex = '1'
       ..backgroundImage = 'url("${src}")'
-      ..backgroundColor = color?.color ?? Colors.white.color
+      // ..backgroundColor = color?.color ?? Colors.white.color
       ..backgroundPosition = 'center'
       ..backgroundSize = 'cover' // cover or contain
       ..backgroundRepeat = 'no-repeat';

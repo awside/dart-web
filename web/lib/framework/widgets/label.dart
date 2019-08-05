@@ -5,7 +5,7 @@ import '../helper/widget.dart';
 class Label extends Widget {
   String text;
   WidgetRef ref;
-  Colors color;
+  // Colors color;
   double fontSize;
   bool italic;
   FontWeight fontWeight;
@@ -13,7 +13,7 @@ class Label extends Widget {
   Label(
     this.text, {
     this.ref,
-    this.color,
+    // this.color,
     this.fontSize,
     this.italic = false,
     this.fontWeight,
@@ -23,8 +23,8 @@ class Label extends Widget {
     element.text = text;
     element.style
       ..fontSize = '${fontSize ?? 16}px'
-      ..fontStyle = italic ? 'italic' : ''
-      ..color = color?.color;
+      ..fontStyle = italic ? 'italic' : '';
+      // ..color = color?.color;
   }
 
   @override
