@@ -41,31 +41,6 @@ class WidgetRef<T> {
   }
 }
 
-class FontWeight {
-  final int index;
-
-  const FontWeight._(this.index);
-
-  static const FontWeight w300 = FontWeight._(2);
-  static const FontWeight w400 = FontWeight._(3);
-  static const FontWeight w700 = FontWeight._(6);
-  static const FontWeight light = w300;
-  static const FontWeight normal = w400;
-  static const FontWeight bold = w700;
-
-  String _getValue() {
-    return const <int, String>{
-      2: '300',
-      3: '400',
-      6: '700',
-    }[index];
-  }
-
-  applyTo(Widget widget) {
-    return widget.element.style.fontWeight = _getValue();
-  }
-}
-
 class GestureDetector {
   final Function(Event) onTap;
 

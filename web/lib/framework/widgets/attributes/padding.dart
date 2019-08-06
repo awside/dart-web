@@ -99,5 +99,12 @@ class Padding {
   set right(double right) => _animRight.value = right;
 
   get bottom => _animLeft.value;
-  set botom(double bottom) => _animBottom.value = bottom;
+  set bottom(double bottom) => _animBottom.value = bottom;
+
+  set all(double value) {
+    left = value;
+    top = value;
+    right = value;
+    bottom = value;
+  }
 }
