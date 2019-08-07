@@ -7,7 +7,7 @@ abstract class Component {
   Element _attachmentPoint;
 
   setAttachmentPoint(Element attachmentPoint) {
-    this._attachmentPoint = attachmentPoint;
+    _attachmentPoint = attachmentPoint;
     widget = build();
     _attachmentPoint.children.add(widget.element);
     widget.render();

@@ -3,6 +3,7 @@ import 'dart:html';
 import 'lib/framework/helper/animation_controller.dart';
 import 'lib/framework/helper/component.dart';
 import 'lib/framework/helper/widget.dart';
+import 'lib/framework/widgets/Icon.dart';
 import 'lib/framework/widgets/attributes/border.dart';
 import 'lib/framework/widgets/attributes/color.dart';
 import 'lib/framework/widgets/attributes/flex.dart';
@@ -20,27 +21,29 @@ void main() {
 }
 
 class MyBox extends Component {
-  var ref = WidgetRef<Container>();
+  var ref = WidgetRef<Icon>();
 
   handleClick() {
-    ref.widget.border
-      ..duration = 300
-      ..radius = 15;
+    ref.widget.icon = Typicons.book;
   }
 
   @override
   Widget build() {
     return Container(
-      ref: ref,
       gestureDetector: GestureDetector(
         onTap: (f) => handleClick(),
       ),
       size: Size(height: 100),
       color: Colors.blue,
-      flex:
-          Flex(horizontal: FlexPosition.center, vertical: FlexPosition.center),
-      child: Label(
-        text: "hello World",
+      flex: Flex(
+        horizontal: FlexPosition.center,
+        vertical: FlexPosition.center,
+      ),
+      child: Container(
+        size: Size(height: 32),
+        child: Icon(
+          ref: ref,
+        ),
       ),
     );
   }

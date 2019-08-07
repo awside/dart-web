@@ -3,27 +3,40 @@ import 'dart:svg';
 import 'package:meta/meta.dart';
 
 import '../helper/widget.dart';
+import 'attributes/color.dart';
 import 'attributes/size.dart';
 
 class Icon extends Widget {
-  WidgetRef ref;
-  SvgElement icon;
-  Size size;
-  // Colors color;
+  WidgetRef _ref;
+  SvgElement _icon;
+  Colors color;
 
   Icon({
-    this.ref,
-    @required this.icon,
-    this.size,
-    // this.color,
-  }) : super(element: icon);
+    WidgetRef ref,
+    SvgElement icon,
+    this.color,
+  }) : super(element: Typicons.home) {
+    _ref = ref;
+    _icon = icon;
+  }
 
   @override
   render() {
-    ref?.applyTo(this);
-    size ??= Size();
-    size.applyTo(this);
-    // (element as SvgElement).attributes['fill'] = color?.color;
+    element.style
+      ..width = '100%'
+      ..height = '100%';
+    _ref?.applyTo(this);
+    if (_icon != null) element = _icon;
+    color ??= Colors.black;
+    color.stream.listen((v) => (element as SvgElement).attributes['fill'] = v);
+  }
+
+  set icon(SvgElement value) {
+    var parent = element.parent;
+    element.remove();
+    element = value;
+    parent.children.add(element);
+    render();
   }
 }
 

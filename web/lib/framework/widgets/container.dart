@@ -48,7 +48,7 @@ class Container extends Widget {
     ref?.applyTo(this);
     (gestureDetector ??= GestureDetector()).applyTo(this);
     (flex ??= Flex()).applyTo(this);
-    color ??= Colors.white;
+    color ??= Colors.transparent;
     color.stream.listen((v) => element.style.background = v);
     (size ??= Size()).applyTo(this);
     (padding ??= Padding()).applyTo(this);
