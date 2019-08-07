@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import '../helper/widget.dart';
+import '../widget.dart';
 
 class Row extends Widget {
   WidgetRef ref;

@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import '../helper/widget.dart';
+import '../widget.dart';
 import 'attributes/color.dart';
 import 'attributes/font_weight.dart';
 

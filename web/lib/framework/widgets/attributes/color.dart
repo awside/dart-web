@@ -1,8 +1,8 @@
 import 'package:hex/hex.dart';
 
-import '../../helper/animated_double.dart';
-import '../../helper/animation_controller.dart';
-import '../../helper/bloc.dart';
+import '../../../anim/animated_double.dart';
+import '../../../anim/animation_controller.dart';
+import '../../../bloc/bloc.dart';
 
 class Colors {
   AnimatedDouble _animRed;

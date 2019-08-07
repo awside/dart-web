@@ -1,4 +1,4 @@
-import '../../helper/widget.dart';
+import '../../widget.dart';
 
 enum FWeight {
   light,

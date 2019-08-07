@@ -1,19 +1,11 @@
 import 'dart:html';
 
-import 'lib/framework/helper/animation_controller.dart';
-import 'lib/framework/helper/component.dart';
-import 'lib/framework/helper/widget.dart';
+import 'lib/framework/component.dart';
+import 'lib/framework/widget.dart';
 import 'lib/framework/widgets/Icon.dart';
-import 'lib/framework/widgets/attributes/border.dart';
 import 'lib/framework/widgets/attributes/color.dart';
-import 'lib/framework/widgets/attributes/flex.dart';
-import 'lib/framework/widgets/attributes/font_weight.dart';
-import 'lib/framework/widgets/attributes/padding.dart';
-import 'lib/framework/widgets/attributes/position.dart';
-import 'lib/framework/widgets/attributes/shadow.dart';
 import 'lib/framework/widgets/attributes/size.dart';
 import 'lib/framework/widgets/container.dart';
-import 'lib/framework/widgets/label.dart';
 
 void main() {
   var myBox = MyBox();
@@ -30,21 +22,8 @@ class MyBox extends Component {
   @override
   Widget build() {
     return Container(
-      gestureDetector: GestureDetector(
-        onTap: (f) => handleClick(),
-      ),
-      size: Size(height: 100),
-      color: Colors.blue,
-      flex: Flex(
-        horizontal: FlexPosition.center,
-        vertical: FlexPosition.center,
-      ),
-      child: Container(
-        size: Size(height: 32),
-        child: Icon(
-          ref: ref,
-        ),
-      ),
+      size: Size(height: 200),
+      color: Colors.green,
     );
   }
 }

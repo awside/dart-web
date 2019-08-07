@@ -1,6 +1,8 @@
-import '../../helper/animated_double.dart';
-import '../../helper/animation_controller.dart';
-import '../../helper/widget.dart';
+
+
+import '../../../anim/animated_double.dart';
+import '../../../anim/animation_controller.dart';
+import '../../widget.dart';
 
 class Size {
   Widget widget;

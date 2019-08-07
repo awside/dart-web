@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:meta/meta.dart';
 
-import '../helper/widget.dart';
+import '../widget.dart';
 import 'attributes/border.dart';
 import 'attributes/shadow.dart';
 

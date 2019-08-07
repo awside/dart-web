@@ -1,5 +1,5 @@
+import '../bloc/bloc.dart';
 import 'animation_controller.dart';
-import 'bloc.dart';
 
 class AnimatedDouble {
   double _value;

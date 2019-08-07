@@ -1,4 +1,4 @@
-import '../../helper/widget.dart';
+import '../../widget.dart';
 
 enum FlexPosition { start, center, end }
 

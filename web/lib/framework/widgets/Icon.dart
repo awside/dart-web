@@ -1,10 +1,7 @@
 import 'dart:svg';
 
-import 'package:meta/meta.dart';
-
-import '../helper/widget.dart';
+import '../widget.dart';
 import 'attributes/color.dart';
-import 'attributes/size.dart';
 
 class Icon extends Widget {
   WidgetRef _ref;

@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import '../helper/widget.dart';
+import '../widget.dart';
 
 class Stack extends Widget {
   WidgetRef ref;
