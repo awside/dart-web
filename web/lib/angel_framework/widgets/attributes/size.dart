@@ -1,7 +1,7 @@
 
 
 import '../../../anim/animated_double.dart';
-import '../../../anim/animation_controller.dart';
+import '../../../anim/curves.dart';
 import '../../widget.dart';
 
 class Size {
@@ -60,12 +60,12 @@ class Size {
     _animHeightPercentage.duration = duration;
   }
 
-  set curve(Curves curve) {
-    _animWidth.curve = curve;
-    _animHeight.curve = curve;
-    _animWidthPercentage.curve = curve;
-    _animHeightPercentage.curve = curve;
-  }
+  // set curve(Curves curve) {
+  //   _animWidth.curve = curve;
+  //   _animHeight.curve = curve;
+  //   _animWidthPercentage.curve = curve;
+  //   _animHeightPercentage.curve = curve;
+  // }
 
   get width => _animWidth.value;
   set width(double width) {

@@ -1,5 +1,6 @@
 import '../../../anim/animated_double.dart';
 import '../../../anim/animation_controller.dart';
+import '../../../anim/curves.dart';
 import '../../widget.dart';
 
 class Padding {
@@ -82,12 +83,12 @@ class Padding {
     _animBottom.duration = duration;
   }
 
-  set curve(Curves curve) {
-    _animLeft.curve = curve;
-    _animTop.curve = curve;
-    _animRight.curve = curve;
-    _animBottom.curve = curve;
-  }
+  // set curve(Curves curve) {
+  //   _animLeft.curve = curve;
+  //   _animTop.curve = curve;
+  //   _animRight.curve = curve;
+  //   _animBottom.curve = curve;
+  // }
 
   get left => _animLeft.value;
   set left(double left) => _animLeft.value = left;

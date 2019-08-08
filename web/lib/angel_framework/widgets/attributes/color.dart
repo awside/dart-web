@@ -2,6 +2,7 @@ import 'package:hex/hex.dart';
 
 import '../../../anim/animated_double.dart';
 import '../../../anim/animation_controller.dart';
+import '../../../anim/curves.dart';
 import '../../../bloc/bloc.dart';
 
 class Colors {
@@ -38,12 +39,12 @@ class Colors {
     _animAlpha.duration = duration;
   }
 
-  set curve(Curves curve) {
-    _animRed.curve = curve;
-    _animGreen.curve = curve;
-    _animBlue.curve = curve;
-    _animAlpha.curve = curve;
-  }
+  // set curve(Curves curve) {
+  //   _animRed.curve = curve;
+  //   _animGreen.curve = curve;
+  //   _animBlue.curve = curve;
+  //   _animAlpha.curve = curve;
+  // }
 
   get alpha => _animAlpha.value;
   set alpha(double alpha) => _animAlpha.value = alpha;

@@ -1,5 +1,5 @@
 import '../../../anim/animated_double.dart';
-import '../../../anim/animation_controller.dart';
+import '../../../anim/curves.dart';
 import '../../widget.dart';
 import 'color.dart';
 
@@ -48,10 +48,10 @@ class Border {
     _animRadius.duration = duration;
   }
 
-  set curve(Curves curve) {
-    _animWidth.curve = curve;
-    _animRadius.curve = curve;
-  }
+  // set curve(Curves curve) {
+  //   _animWidth.curve = curve;
+  //   _animRadius.curve = curve;
+  // }
 
   get width => _animWidth.value;
   set width(double width) => _animWidth.value = width;

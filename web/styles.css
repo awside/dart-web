@@ -35,8 +35,11 @@ body {
 }
 
 #output {
-  display: flex;
+  width: 200px;
+  height: 200px;
+  background: green;
+  /* display: flex;
   width: 100vw;
   justify-content: center;
-  overflow-x: hidden;
+  overflow-x: hidden; */
 }

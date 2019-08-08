@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:meta/meta.dart';
 
+// export 'widgets/'
+
 class Widget {
   Element element;
   Widget child;
@@ -50,4 +52,3 @@ class GestureDetector {
     if (onTap != null) widget.element.addEventListener('click', onTap);
   }
 }
-

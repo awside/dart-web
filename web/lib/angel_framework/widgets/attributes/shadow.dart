@@ -1,5 +1,6 @@
 import '../../../anim/animated_double.dart';
 import '../../../anim/animation_controller.dart';
+import '../../../anim/curves.dart';
 import '../../widget.dart';
 import 'color.dart';
 
@@ -64,12 +65,12 @@ class Shadow {
     _animSpread.duration = duration;
   }
 
-  set curve(Curves curve) {
-    _animX.curve = curve;
-    _animY.curve = curve;
-    _animBlur.curve = curve;
-    _animSpread.curve = curve;
-  }
+  // set curve(Curves curve) {
+  //   _animX.curve = curve;
+  //   _animY.curve = curve;
+  //   _animBlur.curve = curve;
+  //   _animSpread.curve = curve;
+  // }
 
   get x => _animX.value;
   set x(double x) => _animX.value = x;

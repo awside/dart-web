@@ -1,5 +1,5 @@
 import '../../../anim/animated_double.dart';
-import '../../../anim/animation_controller.dart';
+import '../../../anim/curves.dart';
 import '../../widget.dart';
 
 class Position {
@@ -36,10 +36,10 @@ class Position {
     _animY.duration = duration;
   }
 
-  set curve(Curves curve) {
-    _animX.curve = curve;
-    _animY.curve = curve;
-  }
+  // set curve(Curves curve) {
+  //   _animX.curve = curve;
+  //   _animY.curve = curve;
+  // }
 
   get x => _animX.value;
   set x(double x) => _animX.value = x;

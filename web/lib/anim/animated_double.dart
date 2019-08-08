@@ -1,10 +1,11 @@
 import '../bloc/bloc.dart';
 import 'animation_controller.dart';
+import 'curves.dart';
 
 class AnimatedDouble {
   double _value;
   double duration = 0;
-  Curves curve;
+  // Curves curve;
   var _animationController = AnimationController();
   var _bloc = Bloc<double>();
 
@@ -23,15 +24,15 @@ class AnimatedDouble {
       _bloc.sink.add(newValue);
       return;
     }
-    _animationController.animate(
-        duration: duration,
-        startValue: _value,
-        endValue: newValue,
-        curve: curve,
-        animation: (double value) {
-          _value = value;
-          _bloc.sink.add(value);
-        });
+    // _animationController.animate(
+    //     duration: duration,
+    //     startValue: _value,
+    //     endValue: newValue,
+    //     curve: curve,
+    //     animation: (double value) {
+    //       _value = value;
+    //       _bloc.sink.add(value);
+    //     });
   }
 
   set resetValue(double value) {

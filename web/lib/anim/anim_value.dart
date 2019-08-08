@@ -4,7 +4,7 @@ import '../bloc/bloc.dart';
 import 'curves.dart';
 import 'ticker.dart';
 
-class AnimationController {
+class AnimValue {
   final double startValue;
   final double endValue;
   final double duration;
@@ -14,7 +14,7 @@ class AnimationController {
   var _blocFrame = Bloc<double>();
   var _blocComplete = Bloc<bool>();
 
-  AnimationController({
+  AnimValue({
     @required this.startValue,
     @required this.endValue,
     this.duration = 0,

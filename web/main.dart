@@ -1,15 +1,18 @@
+import 'dart:async';
 import 'dart:html';
 
-import 'lib/framework/component.dart';
-import 'lib/framework/widget.dart';
-import 'lib/framework/widgets/Icon.dart';
-import 'lib/framework/widgets/attributes/color.dart';
-import 'lib/framework/widgets/attributes/size.dart';
-import 'lib/framework/widgets/container.dart';
+import 'lib/angel_framework/angel.dart';
+import 'lib/anim/anime_test.dart';
 
 void main() {
-  var myBox = MyBox();
-  myBox.setAttachmentPoint(querySelector('#output'));
+  // var myBox = MyBox();
+  // myBox.setAttachmentPoint(querySelector('#output'));
+  // Anim(element: querySelector('#output'));
+  Anim({
+    'targets': querySelector('#output'),
+    'duration': 300,
+    'width': 50,
+  });
 }
 
 class MyBox extends Component {
