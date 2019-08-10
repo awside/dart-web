@@ -24,9 +24,7 @@ class Icon extends Widget {
       ..height = '100%';
     _ref?.applyTo(this);
     if (_icon != null) element = _icon;
-    color ??= Colors.black;
-    color.stream.listen((v) => (element as SvgElement).attributes['fill'] = v);
-  }
+    }
 
   set icon(SvgElement value) {
     var parent = element.parent;

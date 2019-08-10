@@ -1,5 +1,4 @@
 import '../../../anim/animated_double.dart';
-import '../../../anim/curves.dart';
 import '../../widget.dart';
 import 'color.dart';
 
@@ -28,19 +27,6 @@ class Border {
       ..borderWidth = '${_animWidth.value}px'
       ..borderStyle = style
       ..borderRadius = '${_animRadius.value}px';
-    _listeners();
-  }
-
-  _listeners() {
-    color.stream.listen((v) {
-      widget.element.style.borderColor = v;
-    });
-    _animWidth.stream.listen((v) {
-      widget.element.style.borderWidth = '${v}px';
-    });
-    _animRadius.stream.listen((v) {
-      widget.element.style.borderRadius = '${v}px';
-    });
   }
 
   set duration(double duration) {

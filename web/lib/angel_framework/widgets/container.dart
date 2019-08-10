@@ -1,43 +1,33 @@
 import 'dart:html';
 
 import '../widget.dart';
-import 'attributes/border.dart';
-import 'attributes/color.dart';
-import 'attributes/flex.dart';
-import 'attributes/padding.dart';
-import 'attributes/position.dart';
-import 'attributes/shadow.dart';
-import 'attributes/size.dart';
+import 'attributes/widget_attributes.dart';
 
 class Container extends Widget {
   WidgetRef ref;
-  GestureDetector gestureDetector;
   Widget child;
-  Flex flex;
-  Colors color;
-  Size size;
-  Padding padding;
-  Position position;
-  Border border;
-  Shadow shadow;
-  double duration;
+  GestureDetector gestureDetector;
+  final List<WidgetAttribute> widgetAttributeList = [];
 
   Container({
     this.ref,
-    this.gestureDetector,
     this.child,
-    this.duration,
-    this.flex,
-    this.color,
-    this.size,
-    this.padding,
-    this.position,
-    this.border,
-    this.shadow,
+    this.gestureDetector,
+    Colors color,
+    Flex flex,
+    Size size,
+    Padding padding,
+    Shadow shadow,
   }) : super(
           element: DivElement(),
           child: child,
-        );
+        ) {
+    if (color != null) widgetAttributeList.add(color);
+    if (flex != null) widgetAttributeList.add(flex);
+    if (size != null) widgetAttributeList.add(size);
+    if (padding != null) widgetAttributeList.add(padding);
+    if (shadow != null) widgetAttributeList.add(shadow);
+  }
 
   @override
   render() {
@@ -46,14 +36,12 @@ class Container extends Widget {
       ..overflow = 'hidden'
       ..boxSizing = 'border-box';
     ref?.applyTo(this);
-    (gestureDetector ??= GestureDetector()).applyTo(this);
-    (flex ??= Flex()).applyTo(this);
-    color ??= Colors.transparent;
-    color.stream.listen((v) => element.style.background = v);
-    (size ??= Size()).applyTo(this);
-    (padding ??= Padding()).applyTo(this);
-    (position ??= Position()).applyTo(this);
-    (border ??= Border()).applyTo(this);
-    (shadow ??= Shadow()).applyTo(this);
+
+    for (var widgetAttribute in widgetAttributeList) {
+      widgetAttribute.applyTo(this);
+      if (widgetAttribute is Colors) {
+        element.style.background = widgetAttribute.color;
+      }
+    }
   }
 }

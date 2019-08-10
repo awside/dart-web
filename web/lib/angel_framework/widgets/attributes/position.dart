@@ -1,5 +1,4 @@
 import '../../../anim/animated_double.dart';
-import '../../../anim/curves.dart';
 import '../../widget.dart';
 
 class Position {
@@ -19,30 +18,5 @@ class Position {
     this.widget = widget;
     widget.element.style.transform =
         'translate(${_animX.value}px, ${_animY.value}px)';
-    _listeners();
   }
-
-  _listeners() {
-    _animX.stream.listen((v) {
-      widget.element.style.transform = 'translateX(${_animX.value}px)';
-    });
-    _animY.stream.listen((v) {
-      widget.element.style.transform = 'translateY(${_animY.value}px)';
-    });
-  }
-
-  set duration(double duration) {
-    _animX.duration = duration;
-    _animY.duration = duration;
-  }
-
-  // set curve(Curves curve) {
-  //   _animX.curve = curve;
-  //   _animY.curve = curve;
-  // }
-
-  get x => _animX.value;
-  set x(double x) => _animX.value = x;
-  get y => _animY.value;
-  set y(double y) => _animY.value = y;
 }

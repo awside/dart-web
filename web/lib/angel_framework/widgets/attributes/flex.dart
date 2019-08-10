@@ -1,43 +1,36 @@
-import '../../widget.dart';
+import 'widget_attributes.dart';
 
 enum FlexPosition { start, center, end }
 
-class Flex {
-  Widget widget;
-  FlexPosition _horizontal;
-  FlexPosition _vertical;
+class Flex extends WidgetAttribute {
+  final int flex;
+  final FlexPosition horizontal;
+  final FlexPosition vertical;
 
   Flex({
-    FlexPosition horizontal = FlexPosition.start,
-    FlexPosition vertical = FlexPosition.start,
-  }) {
-    _horizontal = horizontal;
-    _vertical = vertical;
-  }
+    this.flex,
+    this.horizontal,
+    this.vertical,
+  });
 
-  applyTo(Widget widget) {
-    this.widget = widget;
-    this.horizontal = _horizontal;
-    this.vertical = _vertical;
+  @override
+  applyToElement() {
+    widget.element.style
+      ..flex = flex.toString()
+      ..justifyContent = getFlexPositionString(horizontal)
+      ..alignItems = getFlexPositionString(vertical);
   }
-
-  set horizontal(FlexPosition flexPosition) =>
-      widget.element.style.justifyContent = getFlexPositionString(flexPosition);
-  set vertical(FlexPosition flexPosition) =>
-      widget.element.style.alignItems = getFlexPositionString(flexPosition);
 
   String getFlexPositionString(FlexPosition value) {
     switch (value) {
       case FlexPosition.start:
         return 'flex-start';
-        break;
       case FlexPosition.center:
         return 'center';
-        break;
       case FlexPosition.end:
         return 'flex-end';
-        break;
+      default:
+        return null;
     }
-    return null;
   }
 }

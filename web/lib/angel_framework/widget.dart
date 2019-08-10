@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 
 // export 'widgets/'
 
-class Widget {
+abstract class Widget {
   Element element;
   Widget child;
   List<Widget> children;
@@ -32,7 +32,8 @@ class Widget {
     }
   }
 
-  render() {}
+  @protected
+  render();
 }
 
 class WidgetRef<T> {

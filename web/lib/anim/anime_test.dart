@@ -5,3 +5,9 @@ class Anim {
     context.callMethod('anime', [JsObject.jsify(map)]);
   }
 }
+
+// Anim({
+  //   'targets': querySelector('#output'),
+  //   'duration': 300,
+  //   'width': 50,
+  // });

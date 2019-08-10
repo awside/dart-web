@@ -35,13 +35,6 @@ class Label extends Widget {
     this.italic = _italic ?? false;
     color ??= Colors.black;
     (fontWeight ??= FontWeight.normal).applyTo(this);
-    _listeners();
-  }
-
-  _listeners() {
-    color.stream.listen((v) {
-      element.style.color = v;
-    });
   }
 
   set text(String value) => element.text = value;
