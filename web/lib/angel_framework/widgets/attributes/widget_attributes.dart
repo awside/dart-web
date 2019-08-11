@@ -4,6 +4,5 @@ export 'flex.dart';
 export 'color.dart';
 export 'border.dart';
 export 'padding.dart';
-export 'position.dart';
 export 'shadow.dart';
 export 'font_weight.dart';

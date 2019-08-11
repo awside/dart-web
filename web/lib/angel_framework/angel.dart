@@ -8,5 +8,4 @@ export 'widgets/attributes/size.dart';
 export 'widgets/attributes/padding.dart';
 export 'widgets/attributes/flex.dart';
 export 'widgets/attributes/font_weight.dart';
-export 'widgets/attributes/position.dart';
 export 'widgets/attributes/color.dart';

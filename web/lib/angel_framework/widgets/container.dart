@@ -18,6 +18,7 @@ class Container extends Widget {
     Size size,
     Padding padding,
     Shadow shadow,
+    Border border,
   }) : super(
           element: DivElement(),
           child: child,
@@ -27,6 +28,7 @@ class Container extends Widget {
     if (size != null) widgetAttributeList.add(size);
     if (padding != null) widgetAttributeList.add(padding);
     if (shadow != null) widgetAttributeList.add(shadow);
+    if (border != null) widgetAttributeList.add(border);
   }
 
   @override

@@ -1,47 +1,29 @@
-import '../../../anim/animated_double.dart';
 import '../../widget.dart';
 import 'color.dart';
+import 'widget_attribute.dart';
 
-class Border {
+enum BorderStyle { solid, dotted, dashed }
+
+class Border extends WidgetAttribute {
   Widget widget;
-  AnimatedDouble _animWidth;
-  AnimatedDouble _animRadius;
-  Colors color;
-  String style;
+  final double width;
+  final double radius;
+  final BorderStyle style;
+  final Colors color;
 
   Border({
-    double width,
-    double radius,
-    Colors color,
-    String style,
-  }) {
-    _animWidth = AnimatedDouble(width ?? 0);
-    _animRadius = AnimatedDouble(radius ?? 0);
-    this.color = color ?? Colors.black;
-    this.style = style ?? 'solid';
-  }
+    this.width = 1,
+    this.radius = 0,
+    this.style = BorderStyle.solid,
+    this.color,
+  });
 
-  applyTo(Widget widget) {
-    this.widget = widget;
+  @override
+  applyToElement() {
     widget.element.style
-      ..borderWidth = '${_animWidth.value}px'
-      ..borderStyle = style
-      ..borderRadius = '${_animRadius.value}px';
+      ..borderWidth = '${width}px'
+      ..borderStyle = style.toString().split('.')[1]
+      ..borderRadius = '${radius}px'
+      ..borderColor = color?.color ?? Colors.black.color;
   }
-
-  set duration(double duration) {
-    _animWidth.duration = duration;
-    _animRadius.duration = duration;
-  }
-
-  // set curve(Curves curve) {
-  //   _animWidth.curve = curve;
-  //   _animRadius.curve = curve;
-  // }
-
-  get width => _animWidth.value;
-  set width(double width) => _animWidth.value = width;
-
-  get radius => _animRadius.value;
-  set radius(double radius) => _animRadius.value = radius;
 }
