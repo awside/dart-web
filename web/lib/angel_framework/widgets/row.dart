@@ -3,12 +3,10 @@ import 'dart:html';
 import '../widget.dart';
 
 class Row extends Widget {
-  WidgetRef ref;
   List<Widget> children;
   String justifyContent;
 
   Row({
-    this.ref,
     this.children,
     this.justifyContent,
   }) : super(
@@ -22,7 +20,13 @@ class Row extends Widget {
   }
 
   @override
-  render() {
-    ref?.applyTo(this);
+  initialStyle() {
+    // TODO: implement initialStyle
+    return null;
   }
+
+  // @override
+  // render() {
+  //   ref?.applyTo(this);
+  // }
 }

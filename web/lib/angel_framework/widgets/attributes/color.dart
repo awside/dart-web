@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:hex/hex.dart';
 
 import 'widget_attributes.dart';
@@ -6,7 +8,7 @@ class Colors extends WidgetAttribute {
   final String hexColor;
   final double alpha;
 
-  Colors._(this.hexColor, {this.alpha = 1});
+  const Colors._(this.hexColor, {this.alpha = 1});
 
   String get color {
     var decodedColor = HEX.decode(hexColor.replaceAll('#', ''));
@@ -14,13 +16,13 @@ class Colors extends WidgetAttribute {
   }
 
   @override
-  applyToElement() => null;
+  applyToElement(Element element) => null;
 
-  static Colors get transparent => Colors._('#ffffff', alpha: 0);
-  static Colors get white => Colors._('#ffffff');
-  static Colors get black => Colors._('#000000');
-  static Colors get grey => Colors._('#808080');
-  static Colors get red => Colors._('#ab5454');
-  static Colors get blue => Colors._('#5488ab');
-  static Colors get green => Colors._('#54ab60');
+  static const Colors transparent = Colors._('#ffffff', alpha: 0);
+  static const Colors white = Colors._('#ffffff');
+  static const Colors black = Colors._('#000000');
+  static const Colors grey = Colors._('#808080');
+  static const Colors red = Colors._('#ab5454');
+  static const Colors blue = Colors._('#5488ab');
+  static const Colors green = Colors._('#54ab60');
 }

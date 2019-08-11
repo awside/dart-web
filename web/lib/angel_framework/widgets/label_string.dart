@@ -3,11 +3,9 @@ import 'dart:html';
 import '../widget.dart';
 
 class LabelString extends Widget {
-  WidgetRef ref;
   List<Widget> children;
 
   LabelString({
-    this.ref,
     this.children,
   }) : super(
           element: DivElement(),
@@ -15,7 +13,13 @@ class LabelString extends Widget {
         );
 
   @override
-  render() {
-    ref?.applyTo(this);
+  initialStyle() {
+    // TODO: implement initialStyle
+    return null;
   }
+
+  // @override
+  // render() {
+  //   ref?.applyTo(this);
+  // }
 }

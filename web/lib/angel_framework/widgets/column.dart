@@ -3,19 +3,17 @@ import 'dart:html';
 import '../widget.dart';
 
 class Column extends Widget {
-  WidgetRef ref;
   List<Widget> children;
   String justifyContent;
 
   Column({
-    this.ref,
     this.children,
     this.justifyContent,
   }) : super(
           element: DivElement(),
           children: children,
         ) {
-    ref?.widget = this;
+    // ref?.widget = this;
     element.style
       ..display = 'flex'
       ..flex = '1'
@@ -23,7 +21,13 @@ class Column extends Widget {
   }
 
   @override
-  render() {
-    ref?.applyTo(this);
+  initialStyle() {
+    // TODO: implement initialStyle
+    return null;
   }
+
+  // @override
+  // render() {
+  //   ref?.applyTo(this);
+  // }
 }

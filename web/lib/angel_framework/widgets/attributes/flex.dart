@@ -1,4 +1,6 @@
-import 'widget_attributes.dart';
+import 'dart:html';
+
+import '../../widget.dart';
 
 enum FlexPosition { start, center, end }
 
@@ -7,15 +9,15 @@ class Flex extends WidgetAttribute {
   final FlexPosition horizontal;
   final FlexPosition vertical;
 
-  Flex({
+  const Flex({
     this.flex,
     this.horizontal,
     this.vertical,
   });
 
   @override
-  applyToElement() {
-    widget.element.style
+  applyToElement(Element element) {
+    element.style
       ..flex = flex.toString()
       ..justifyContent = getFlexPositionString(horizontal)
       ..alignItems = getFlexPositionString(vertical);

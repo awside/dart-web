@@ -5,39 +5,40 @@ import 'attributes/color.dart';
 import 'attributes/font_weight.dart';
 
 class Label extends Widget {
-  WidgetRef ref;
-  String _text;
-  Colors color;
-  double _fontSize;
-  bool _italic;
+  String text;
+  // Colors color;
+  double fontSize;
+  bool italic;
   FontWeight fontWeight;
 
   Label({
-    this.ref,
-    String text,
-    this.color,
-    double fontSize,
-    bool italic,
+    this.text = '',
+    // this.color,
+    this.fontSize = 16,
     this.fontWeight,
+    this.italic = false,
   }) : super(
           element: SpanElement(),
-        ) {
-    this._text = text;
-    this._fontSize = fontSize;
-    this._italic = italic;
-  }
+        );
 
   @override
-  render() {
-    ref?.applyTo(this);
-    this.text = _text ?? '';
-    this.fontSize = _fontSize ?? 16;
-    this.italic = _italic ?? false;
-    color ??= Colors.black;
-    (fontWeight ??= FontWeight.normal).applyTo(this);
+  initialStyle() {
+    // TODO: implement initialStyle
+    return null;
   }
 
-  set text(String value) => element.text = value;
-  set fontSize(double value) => element.style.fontSize = '${value}px';
-  set italic(bool value) => element.style.fontStyle = value ? 'italic' : '';
+  // @override
+  // render() {
+  //   ref?.applyTo(this);
+  //   text = text ?? '';
+  //   fontSize = fontSize;
+  //   italic = italic;
+
+  //   element.style.color = color?.color ?? Colors.black.color;
+    
+  // }
+
+  // set text(String value) => element.text = value;
+  // set fontSize(double value) => element.style.fontSize = '${value}px';
+  // set italic(bool value) => element.style.fontStyle = value ? 'italic' : '';
 }

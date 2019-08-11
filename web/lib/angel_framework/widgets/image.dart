@@ -7,14 +7,12 @@ import 'attributes/border.dart';
 import 'attributes/shadow.dart';
 
 class Image extends Widget {
-  WidgetRef ref;
   String src;
   // Colors color;
   Border border;
   Shadow shadow;
 
   Image({
-    this.ref,
     @required String src,
     // this.color,
     this.border,
@@ -32,9 +30,15 @@ class Image extends Widget {
   }
 
   @override
-  render() {
-    ref?.applyTo(this);
-    border?.applyTo(this);
-    shadow?.applyTo(this);
+  initialStyle() {
+    // TODO: implement initialStyle
+    return null;
   }
+
+  // @override
+  // render() {
+  //   // ref?.applyTo(this);
+  //   border?.applyTo(this);
+  //   shadow?.applyTo(this);
+  // }
 }

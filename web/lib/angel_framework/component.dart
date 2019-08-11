@@ -10,8 +10,6 @@ abstract class Component {
     _attachmentPoint = attachmentPoint;
     widget = build();
     _attachmentPoint.children.add(widget.element);
-    widget.render();
-    widget.renderChildren();
   }
 
   Widget build();

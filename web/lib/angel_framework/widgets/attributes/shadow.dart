@@ -1,17 +1,16 @@
+import 'dart:html';
+
 import '../../widget.dart';
-import 'color.dart';
-import 'widget_attributes.dart';
 
 class Shadow extends WidgetAttribute {
-  Widget widget;
   final Colors color;
   final double x;
   final double y;
   final double blur;
   final double spread;
 
-  Shadow({
-    this.color,
+  const Shadow({
+    this.color = Colors.black,
     this.x = 0,
     this.y = 0,
     this.blur = 0,
@@ -19,8 +18,8 @@ class Shadow extends WidgetAttribute {
   });
 
   @override
-  applyToElement() {
-    widget.element.style.boxShadow =
-        '${x}px ${y}px ${blur}px ${spread}px ${color?.color ?? Colors.black.color}';
+  applyToElement(Element element) {
+    element.style.boxShadow =
+        '${x}px ${y}px ${blur}px ${spread}px ${color.color}';
   }
 }

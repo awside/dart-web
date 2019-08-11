@@ -3,11 +3,9 @@ import 'dart:html';
 import '../widget.dart';
 
 class Stack extends Widget {
-  WidgetRef ref;
   List<Widget> children;
 
   Stack({
-    this.ref,
     this.children,
   }) : super(
           element: DivElement(),
@@ -26,7 +24,13 @@ class Stack extends Widget {
   }
 
   @override
-  render() {
-    ref?.applyTo(this);
+  initialStyle() {
+    // TODO: implement initialStyle
+    return null;
   }
+
+  // @override
+  // render() {
+  //   ref?.applyTo(this);
+  // }
 }

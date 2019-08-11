@@ -4,34 +4,39 @@ import '../widget.dart';
 import 'attributes/color.dart';
 
 class Icon extends Widget {
-  WidgetRef _ref;
-  SvgElement _icon;
-  Colors color;
+  // WidgetRef _ref;
+  // SvgElement _icon;
+  // Colors color;
 
   Icon({
-    WidgetRef ref,
     SvgElement icon,
-    this.color,
+    // this.color,
   }) : super(element: Typicons.home) {
-    _ref = ref;
-    _icon = icon;
+    // _ref = ref;
+    // _icon = icon;
   }
 
-  @override
-  render() {
-    element.style
-      ..width = '100%'
-      ..height = '100%';
-    _ref?.applyTo(this);
-    if (_icon != null) element = _icon;
-    }
+  // @override
+  // render() {
+  //   element.style
+  //     ..width = '100%'
+  //     ..height = '100%';
+  //   // _ref?.applyTo(this);
+  //   if (_icon != null) element = _icon;
+  //   }
 
   set icon(SvgElement value) {
     var parent = element.parent;
     element.remove();
     element = value;
     parent.children.add(element);
-    render();
+    // render();
+  }
+
+  @override
+  initialStyle() {
+    // TODO: implement initialStyle
+    return null;
   }
 }
 

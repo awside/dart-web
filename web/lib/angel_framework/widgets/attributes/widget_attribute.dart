@@ -1,15 +1,7 @@
-import 'package:meta/meta.dart';
-
-import '../../widget.dart';
+import 'dart:html';
 
 abstract class WidgetAttribute {
-  Widget widget;
+  const WidgetAttribute();
 
-  applyTo(Widget widget) {
-    this.widget = widget;
-    applyToElement();
-  }
-
-  @protected
-  applyToElement();
+  applyToElement(Element element);
 }

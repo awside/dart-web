@@ -2,14 +2,21 @@ import 'dart:html';
 
 import 'package:meta/meta.dart';
 
-// export 'widgets/'
+import 'widgets/attributes/widget_attributes.dart';
+export 'widgets/attributes/widget_attributes.dart';
 
 abstract class Widget {
   Element element;
   Widget child;
   List<Widget> children;
+  List<WidgetAttribute> widgetAttributeList;
 
-  Widget({@required this.element, Widget child, List<Widget> children}) {
+  Widget({
+    @required this.element,
+    Widget child,
+    List<Widget> children,
+    this.widgetAttributeList,
+  }) {
     if (child != null) {
       this.child = child;
       element.children.add(child.element);
@@ -18,37 +25,22 @@ abstract class Widget {
       this.children = children;
       element.children.addAll(children.map((v) => v.element).toList());
     }
+    initialStyle();
+    _applyAttributeListToWidget();
   }
 
-  renderChildren() {
-    if (child != null) {
-      child.render();
-      child.renderChildren();
-    } else if (children != null) {
-      for (var child in children) {
-        child.render();
-        child.renderChildren();
-      }
+  _applyAttributeListToWidget() {
+    widgetAttributeList.removeWhere((value) => value == null);
+    for (var widgetAttribute in widgetAttributeList) {
+      if (widgetAttribute is Colors) {
+        color(widgetAttribute);
+      } else {}
     }
   }
 
-  render();
-}
+  @protected
+  initialStyle() {}
 
-class WidgetRef<T> {
-  T widget;
-
-  applyTo(Widget widget) {
-    return this.widget = widget as T;
-  }
-}
-
-class GestureDetector {
-  final Function(Event) onTap;
-
-  GestureDetector({this.onTap});
-
-  applyTo(Widget widget) {
-    if (onTap != null) widget.element.addEventListener('click', onTap);
-  }
+  @protected
+  color(Colors color) {}
 }
