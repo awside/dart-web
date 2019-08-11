@@ -9,7 +9,7 @@ class Shadow extends WidgetAttribute {
   final double blur;
   final double spread;
 
-  const Shadow({
+  Shadow({
     this.color = Colors.black,
     this.x = 0,
     this.y = 0,

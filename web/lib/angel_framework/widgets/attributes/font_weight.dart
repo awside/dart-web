@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import '../../widget.dart';
 
 enum FWeight {
@@ -6,36 +8,27 @@ enum FWeight {
   bold,
 }
 
-class FontWeight {
-  Widget _widget;
-  FWeight _weight;
+class FontWeight extends WidgetAttribute {
+  FWeight weight;
 
-  FontWeight._(FWeight fontWeight) {
-    _weight = fontWeight;
-  }
-
-  applyTo(Widget widget) {
-    _widget = widget;
-    this.weight = _weight;
-  }
-
-  set weight(FWeight value) {
-    _widget.element.style.fontWeight = getStringFromWeight(value);
-  }
+  FontWeight._(this.weight);
 
   String getStringFromWeight(FWeight fontWeight) {
     switch (fontWeight) {
       case FWeight.light:
         return '300';
-        break;
       case FWeight.normal:
         return '400';
-        break;
       case FWeight.bold:
         return '700';
-        break;
+      default:
+        return '400';
     }
-    return null;
+  }
+
+  @override
+  applyToElement(Element element) {
+    element.style.fontWeight = getStringFromWeight(weight);
   }
 
   static FontWeight light = FontWeight._(FWeight.light);

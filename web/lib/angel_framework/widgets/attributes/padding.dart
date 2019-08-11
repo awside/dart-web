@@ -8,7 +8,7 @@ class Padding extends WidgetAttribute {
   final double right;
   final double bottom;
 
-  const Padding._(
+  Padding._(
     this.left,
     this.top,
     this.right,

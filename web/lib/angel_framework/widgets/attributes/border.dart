@@ -10,7 +10,7 @@ class Border extends WidgetAttribute {
   final BorderStyle style;
   final Colors color;
 
-  const Border({
+  Border({
     this.width = 1,
     this.radius = 0,
     this.style = BorderStyle.solid,

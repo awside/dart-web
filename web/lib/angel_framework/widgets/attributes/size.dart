@@ -7,8 +7,8 @@ class Size extends WidgetAttribute {
   final dynamic height;
 
   const Size({
-    this.width,
-    this.height,
+    this.width = '100%',
+    this.height = '100%',
   });
 
   @override

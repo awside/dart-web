@@ -6,14 +6,22 @@ class Container extends Widget {
   Container({
     Widget child,
     Container ref,
-    Colors color = Colors.transparent,
+    Colors color,
     Size size,
+    Padding padding,
+    Flex flex,
+    Border border,
+    Shadow shadow,
   }) : super(
           element: DivElement(),
           child: child,
           widgetAttributeList: [
-            color,
-            size,
+            color ?? Colors.transparent,
+            size ?? Size(),
+            padding,
+            flex,
+            border,
+            shadow,
           ],
         ) {
     ref = this;

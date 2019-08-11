@@ -10,6 +10,8 @@ class Colors extends WidgetAttribute {
 
   const Colors._(this.hexColor, {this.alpha = 1});
 
+  Colors(this.hexColor, {this.alpha = 1});
+
   String get color {
     var decodedColor = HEX.decode(hexColor.replaceAll('#', ''));
     return 'rgba(${decodedColor[0]}, ${decodedColor[1]}, ${decodedColor[2]}, ${alpha})';

@@ -5,7 +5,7 @@ import 'widget_attribute.dart';
 class GestureDetector extends WidgetAttribute {
   final Function(Event) onTap;
 
-  const GestureDetector({this.onTap});
+  GestureDetector({this.onTap});
 
   @override
   applyToElement(Element element) {

@@ -34,7 +34,9 @@ abstract class Widget {
     for (var widgetAttribute in widgetAttributeList) {
       if (widgetAttribute is Colors) {
         color(widgetAttribute);
-      } else {}
+      } else {
+        widgetAttribute.applyToElement(element);
+      }
     }
   }
 

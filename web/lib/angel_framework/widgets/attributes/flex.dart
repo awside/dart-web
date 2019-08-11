@@ -9,7 +9,7 @@ class Flex extends WidgetAttribute {
   final FlexPosition horizontal;
   final FlexPosition vertical;
 
-  const Flex({
+  Flex({
     this.flex,
     this.horizontal,
     this.vertical,
