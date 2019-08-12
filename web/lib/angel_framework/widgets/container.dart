@@ -17,7 +17,7 @@ class Container extends Widget {
       ..overflow = 'hidden'
       ..boxSizing = 'border-box'
       ..background = color?.color ?? Colors.transparent.color;
-    size?.applyToElement(element);
+    (size ?? Size()).applyToElement(element);
     padding?.applyToElement(element);
     flex?.applyToElement(element);
     border?.applyToElement(element);
