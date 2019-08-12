@@ -5,7 +5,6 @@ import '../widget.dart';
 class Container extends Widget {
   Container({
     Widget child,
-    Container ref,
     Colors color,
     Size size,
     Padding padding,
@@ -23,9 +22,7 @@ class Container extends Widget {
             border,
             shadow,
           ],
-        ) {
-    ref = this;
-  }
+        );
 
   @override
   initialStyle() {

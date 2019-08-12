@@ -4,7 +4,6 @@ import '../widget.dart';
 
 class Label extends Widget {
   Label({
-    Label ref,
     String text,
     Colors color,
     double fontSize,
@@ -14,7 +13,6 @@ class Label extends Widget {
           color ?? Colors.black,
           fontWeight ?? FontWeight.normal,
         ]) {
-    ref = this;
     this.text = text ?? '';
     this.fontSize = fontSize ?? 16;
     this.italic = italic ?? false;

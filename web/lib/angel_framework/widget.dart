@@ -40,6 +40,10 @@ abstract class Widget {
     }
   }
 
+  set set(WidgetAttribute widgetAttribute) {
+    widgetAttribute.applyToElement(element);
+  }
+
   @protected
   initialStyle() {}
 

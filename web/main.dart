@@ -9,6 +9,8 @@ void main() {
 }
 
 class MyBox extends Component {
+  Container cRef;
+
   MyBox() {
     Timer(Duration(milliseconds: 300), () {});
   }
@@ -16,10 +18,9 @@ class MyBox extends Component {
   @override
   Widget build() {
     return Container(
-      size: Size(height: 200),
       padding: Padding.all(20),
       flex: Flex(horizontal: FlexPosition.center),
-      child: Container(
+      child: cRef = Container(
         color: Colors.red,
         border: Border(
           color: Colors.black,
@@ -28,12 +29,17 @@ class MyBox extends Component {
         ),
         shadow: Shadow(
           blur: 25,
-          spread: -7,
-          color: Colors('#ff5454', alpha: 1),
+          spread: -3,
+          color: Colors.red,
         ),
         padding: Padding.only(left: 25),
         flex: Flex(vertical: FlexPosition.center),
-        child: Label(text: 'Hello World!', fontSize: 50, color: Colors.white),
+        child: Label(
+          text: 'Hello World!',
+          fontSize: 50,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
       ),
     );
   }
