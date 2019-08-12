@@ -15,16 +15,35 @@ class MyBox extends Component {
   @override
   Widget build() {
     return Container(
-      padding: Padding.all(20),
       flex: Flex(
         horizontal: FlexPosition.center,
         vertical: FlexPosition.center,
       ),
-      child: Container(
-        size: Size(height: 200),
-        flex: Flex(vertical: FlexPosition.center),
-        child: Image(src: './images/SwampFoxIcon.png'),
-      ),
+      child: FoxRow(),
+    );
+  }
+}
+
+class FoxRow extends Component {
+  @override
+  Widget build() {
+    return Row(
+      children: [
+        Fox(),
+        Fox(),
+        Fox(),
+      ],
+    );
+  }
+}
+
+class Fox extends Component {
+  @override
+  Widget build() {
+    return Container(
+      size: Size(height: 80, width: 80),
+      padding: Padding.only(left: 20),
+      child: Image(src: './images/SwampFoxIcon.png'),
     );
   }
 }
