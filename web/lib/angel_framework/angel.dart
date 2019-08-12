@@ -5,3 +5,4 @@ export 'widgets/icon.dart';
 export 'widgets/label.dart';
 export 'widgets/image.dart';
 export 'widgets/row.dart';
+export 'widgets/column.dart';

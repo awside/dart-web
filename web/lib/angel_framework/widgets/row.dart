@@ -7,7 +7,7 @@ class Row extends Widget {
     List<Widget> children,
   }) : super(element: DivElement(), children: children) {
     element.style
-      ..flex = '1'
+      // ..flex = '1'
       ..display = 'flex'
       ..flexDirection = 'row';
   }

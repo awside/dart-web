@@ -9,6 +9,7 @@ abstract class Widget {
   Element element;
   Widget child;
   List<Widget> children;
+  GestureDetector gestureDetector;
 
   Widget.component();
 
@@ -25,6 +26,7 @@ abstract class Widget {
       this.children = children;
       element.children.addAll(children.map((v) => v.element).toList());
     }
+    gestureDetector = GestureDetector(element);
   }
 
   set apply(WidgetAttribute widgetAttribute) {

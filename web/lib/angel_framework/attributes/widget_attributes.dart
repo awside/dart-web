@@ -6,3 +6,4 @@ export 'border.dart';
 export 'padding.dart';
 export 'shadow.dart';
 export 'font_weight.dart';
+export 'gesture_detector.dart';

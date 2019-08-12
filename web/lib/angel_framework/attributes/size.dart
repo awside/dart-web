@@ -3,13 +3,18 @@ import 'dart:html';
 import '../widget.dart';
 
 class Size extends WidgetAttribute {
-  final dynamic width;
-  final dynamic height;
+  dynamic width;
+  dynamic height;
 
-  const Size({
+  Size({
     this.width = '100%',
     this.height = '100%',
   });
+
+  Size.square(double value) {
+    width = value;
+    height = value;
+  }
 
   @override
   applyToElement(Element element) {

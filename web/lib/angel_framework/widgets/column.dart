@@ -3,19 +3,12 @@ import 'dart:html';
 import '../widget.dart';
 
 class Column extends Widget {
-  List<Widget> children;
-  String justifyContent;
-
   Column({
-    this.children,
-    this.justifyContent,
-  }) : super(
-          element: DivElement(),
-          children: children,
-        ) {
+    List<Widget> children,
+  }) : super(element: DivElement(), children: children) {
     element.style
+      // ..flex = '1'
       ..display = 'flex'
-      ..flex = '1'
       ..flexDirection = 'column';
   }
 }

@@ -15,10 +15,6 @@ class MyBox extends Component {
   @override
   Widget build() {
     return Container(
-      flex: Flex(
-        horizontal: FlexPosition.center,
-        vertical: FlexPosition.center,
-      ),
       child: FoxRow(),
     );
   }
@@ -29,6 +25,19 @@ class FoxRow extends Component {
   Widget build() {
     return Row(
       children: [
+        FoxColumn(),
+        FoxColumn(),
+        FoxColumn(),
+      ],
+    );
+  }
+}
+
+class FoxColumn extends Component {
+  @override
+  Widget build() {
+    return Column(
+      children: [
         Fox(),
         Fox(),
         Fox(),
@@ -38,12 +47,21 @@ class FoxRow extends Component {
 }
 
 class Fox extends Component {
+  Icon iconRef;
+
+  handleClick(Event e) {
+    if (iconRef.color.color == Colors.black.color) {
+      iconRef.color = Colors.red;
+    } else {
+      iconRef.color = Colors.black;
+    }
+  }
+
   @override
   Widget build() {
     return Container(
-      size: Size(height: 80, width: 80),
-      padding: Padding.only(left: 20),
-      child: Image(src: './images/SwampFoxIcon.png'),
-    );
+      size: Size.square(50),
+      child: iconRef = Icon(),
+    )..gestureDetector.onTap(handleClick);
   }
 }
