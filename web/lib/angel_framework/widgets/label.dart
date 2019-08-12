@@ -9,21 +9,12 @@ class Label extends Widget {
     double fontSize,
     FontWeight fontWeight,
     bool italic,
-  }) : super(element: SpanElement(), widgetAttributeList: [
-          color ?? Colors.black,
-          fontWeight ?? FontWeight.normal,
-        ]) {
-    this.text = text ?? '';
-    this.fontSize = fontSize ?? 16;
-    this.italic = italic ?? false;
-  }
-
-  @override
-  initialStyle() {}
-
-  @override
-  color(Colors color) {
-    element.style.color = color.color;
+  }) : super(element: SpanElement()) {
+    text = text ?? '';
+    fontSize = fontSize ?? 16;
+    italic = italic ?? false;
+    element.style.color = color?.color ?? Colors.black.color;
+    fontWeight?.applyToElement(element);
   }
 
   set text(String value) => element.text = value;

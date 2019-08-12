@@ -11,29 +11,16 @@ class Container extends Widget {
     Flex flex,
     Border border,
     Shadow shadow,
-  }) : super(
-          element: DivElement(),
-          child: child,
-          widgetAttributeList: [
-            color ?? Colors.transparent,
-            size ?? Size(),
-            padding,
-            flex,
-            border,
-            shadow,
-          ],
-        );
-
-  @override
-  initialStyle() {
+  }) : super(element: DivElement(), child: child) {
     element.style
       ..display = 'flex'
       ..overflow = 'hidden'
-      ..boxSizing = 'border-box';
-  }
-
-  @override
-  color(Colors color) {
-    element.style.background = color.color;
+      ..boxSizing = 'border-box'
+      ..background = color?.color ?? Colors.transparent.color;
+    size?.applyToElement(element);
+    padding?.applyToElement(element);
+    flex?.applyToElement(element);
+    border?.applyToElement(element);
+    shadow?.applyToElement(element);
   }
 }

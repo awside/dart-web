@@ -13,21 +13,9 @@ class Column extends Widget {
           element: DivElement(),
           children: children,
         ) {
-    // ref?.widget = this;
     element.style
       ..display = 'flex'
       ..flex = '1'
       ..flexDirection = 'column';
   }
-
-  @override
-  initialStyle() {
-    // TODO: implement initialStyle
-    return null;
-  }
-
-  // @override
-  // render() {
-  //   ref?.applyTo(this);
-  // }
 }

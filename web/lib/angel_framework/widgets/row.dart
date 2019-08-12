@@ -19,12 +19,6 @@ class Row extends Widget {
       ..flexDirection = 'row';
   }
 
-  @override
-  initialStyle() {
-    // TODO: implement initialStyle
-    return null;
-  }
-
   // @override
   // render() {
   //   ref?.applyTo(this);

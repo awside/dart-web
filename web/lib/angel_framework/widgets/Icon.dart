@@ -11,7 +11,6 @@ class Icon extends Widget {
     SvgElement icon,
     // this.color,
   }) : super(element: Typicons.home) {
-    // _ref = ref;
     // _icon = icon;
   }
 
@@ -32,11 +31,6 @@ class Icon extends Widget {
     // render();
   }
 
-  @override
-  initialStyle() {
-    // TODO: implement initialStyle
-    return null;
-  }
 }
 
 class Typicons {

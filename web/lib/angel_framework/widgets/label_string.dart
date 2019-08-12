@@ -12,11 +12,6 @@ class LabelString extends Widget {
           children: children,
         );
 
-  @override
-  initialStyle() {
-    // TODO: implement initialStyle
-    return null;
-  }
 
   // @override
   // render() {
