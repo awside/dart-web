@@ -19,28 +19,26 @@ class MyBox extends Component {
       size: Size(height: 300),
       child: Stack(
         children: [
-          Fox(300, Colors.blue),
-          Fox(200, Colors.green),
-          Fox(100, Colors.grey),
+          TopFox(),
         ],
       ),
     );
   }
 }
 
-class Fox extends Component {
-  final double size;
-  final Colors color;
+class TopFox extends Component {
   Icon iconRef;
-
-  Fox(this.size, this.color);
 
   @override
   Widget build() {
     return Container(
-      size: Size.square(size),
-      child: iconRef = Icon(color: color),
-    )..gestureDetector.onTap(handleClick);
+      size: Size(height: 44),
+      flex: Flex(horizontal: FlexPosition.center),
+      child: Container(
+        size: Size.square(44),
+        child: iconRef = Icon(color: Colors.grey),
+      )..gestureDetector.onTap(handleClick),
+    );
   }
 
   handleClick(Event e) {
