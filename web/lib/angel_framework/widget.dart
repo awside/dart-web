@@ -11,6 +11,8 @@ abstract class Widget {
   List<Widget> children;
   List<WidgetAttribute> widgetAttributeList;
 
+  Widget.component();
+
   Widget({
     @required this.element,
     Widget child,

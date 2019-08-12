@@ -4,13 +4,10 @@ import 'dart:html';
 import 'lib/angel_framework/angel.dart';
 
 void main() {
-  var myBox = MyBox();
-  myBox.setAttachmentPoint(querySelector('#output'));
+  querySelector('#output').children.add(MyBox().element);
 }
 
 class MyBox extends Component {
-  Container cRef;
-
   MyBox() {
     Timer(Duration(milliseconds: 300), () {});
   }
@@ -20,27 +17,32 @@ class MyBox extends Component {
     return Container(
       padding: Padding.all(20),
       flex: Flex(horizontal: FlexPosition.center),
-      child: cRef = Container(
+      child: Container(
         color: Colors.red,
         border: Border(
-          color: Colors.black,
-          width: 5,
+          width: 0,
           radius: 8,
         ),
         shadow: Shadow(
-          blur: 25,
-          spread: -3,
-          color: Colors.red,
+          blur: 12,
+          spread: 2,
+          color: Colors.red..alpha(0.5),
         ),
         padding: Padding.only(left: 25),
         flex: Flex(vertical: FlexPosition.center),
-        child: Label(
-          text: 'Hello World!',
-          fontSize: 50,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
+        child: MyText(),
       ),
+    );
+  }
+}
+
+class MyText extends Component {
+  @override
+  Widget build() {
+    return Label(
+      text: 'Hello World!',
+      fontSize: 50,
+      color: Colors.white,
     );
   }
 }

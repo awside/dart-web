@@ -14,7 +14,7 @@ class Border extends WidgetAttribute {
     this.width = 1,
     this.radius = 0,
     this.style = BorderStyle.solid,
-    this.color = Colors.black,
+    this.color,
   });
 
   @override
@@ -23,6 +23,6 @@ class Border extends WidgetAttribute {
       ..borderWidth = '${width}px'
       ..borderStyle = style.toString().split('.')[1]
       ..borderRadius = '${radius}px'
-      ..borderColor = color.color;
+      ..borderColor = color?.color ?? Colors.black.color;
   }
 }

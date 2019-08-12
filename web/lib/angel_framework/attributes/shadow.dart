@@ -10,7 +10,7 @@ class Shadow extends WidgetAttribute {
   final double spread;
 
   Shadow({
-    this.color = Colors.black,
+    this.color,
     this.x = 0,
     this.y = 0,
     this.blur = 0,
@@ -20,6 +20,6 @@ class Shadow extends WidgetAttribute {
   @override
   applyToElement(Element element) {
     element.style.boxShadow =
-        '${x}px ${y}px ${blur}px ${spread}px ${color.color}';
+        '${x}px ${y}px ${blur}px ${spread}px ${color?.color ?? Colors.black.color}';
   }
 }

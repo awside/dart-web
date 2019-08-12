@@ -1,15 +1,8 @@
-import 'dart:html';
-
 import 'widget.dart';
 
-abstract class Component {
-  Widget widget;
-  Element _attachmentPoint;
-
-  setAttachmentPoint(Element attachmentPoint) {
-    _attachmentPoint = attachmentPoint;
-    widget = build();
-    _attachmentPoint.children.add(widget.element);
+abstract class Component extends Widget {
+  Component() : super.component() {
+    element = build().element;
   }
 
   Widget build();
