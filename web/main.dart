@@ -16,33 +16,15 @@ class MyBox extends Component {
   Widget build() {
     return Container(
       padding: Padding.all(20),
-      flex: Flex(horizontal: FlexPosition.center),
-      child: Container(
-        color: Colors.red,
-        border: Border(
-          width: 0,
-          radius: 8,
-        ),
-        shadow: Shadow(
-          blur: 12,
-          spread: 2,
-          color: Colors.red..alpha(0.5),
-        ),
-        padding: Padding.only(left: 25),
-        flex: Flex(vertical: FlexPosition.center),
-        child: MyText(),
+      flex: Flex(
+        horizontal: FlexPosition.center,
+        vertical: FlexPosition.center,
       ),
-    );
-  }
-}
-
-class MyText extends Component {
-  @override
-  Widget build() {
-    return Label(
-      text: 'Hello World!',
-      fontSize: 50,
-      color: Colors.white,
+      child: Container(
+        size: Size(height: 200),
+        flex: Flex(vertical: FlexPosition.center),
+        child: Image(src: './images/SwampFoxIcon.png'),
+      ),
     );
   }
 }

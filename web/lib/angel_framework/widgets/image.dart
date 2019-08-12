@@ -4,39 +4,28 @@ import 'package:meta/meta.dart';
 
 import '../widget.dart';
 
-class Image extends Widget {
-  String src;
-  // Colors color;
-  Border border;
-  Shadow shadow;
+enum ImageSize { cover, contain }
 
+class Image extends Widget {
   Image({
     @required String src,
-    // this.color,
-    this.border,
-    this.shadow,
+    ImageSize imageSize = ImageSize.contain,
+    Colors color,
   }) : super(
           element: DivElement(),
         ) {
     element.style
-      ..flex = '1'
+      ..width = '100%'
+      ..height = '100%'
       ..backgroundImage = 'url("${src}")'
-      // ..backgroundColor = color?.color ?? Colors.white.color
       ..backgroundPosition = 'center'
-      ..backgroundSize = 'cover' // cover or contain
+      ..backgroundSize = imageSize.toString().split('.')[1]
       ..backgroundRepeat = 'no-repeat';
+    var overlay = DivElement();
+    overlay.style
+      ..width = '100%'
+      ..height = '100%'
+      ..backgroundColor = color?.color ?? Colors.transparent.color;
+    element.children.add(overlay);
   }
-
-  @override
-  initialStyle() {
-    // TODO: implement initialStyle
-    return null;
-  }
-
-  // @override
-  // render() {
-  //   // ref?.applyTo(this);
-  //   border?.applyTo(this);
-  //   shadow?.applyTo(this);
-  // }
 }

@@ -32,6 +32,7 @@ abstract class Widget {
   }
 
   _applyAttributeListToWidget() {
+    if (widgetAttributeList == null) return;
     widgetAttributeList.removeWhere((value) => value == null);
     for (var widgetAttribute in widgetAttributeList) {
       if (widgetAttribute is Colors) {
