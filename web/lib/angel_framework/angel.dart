@@ -6,3 +6,4 @@ export 'widgets/label.dart';
 export 'widgets/image.dart';
 export 'widgets/row.dart';
 export 'widgets/column.dart';
+export 'widgets/stack.dart';

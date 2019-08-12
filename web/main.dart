@@ -15,53 +15,35 @@ class MyBox extends Component {
   @override
   Widget build() {
     return Container(
-      child: FoxRow(),
-    );
-  }
-}
-
-class FoxRow extends Component {
-  @override
-  Widget build() {
-    return Row(
-      children: [
-        FoxColumn(),
-        FoxColumn(),
-        FoxColumn(),
-      ],
-    );
-  }
-}
-
-class FoxColumn extends Component {
-  @override
-  Widget build() {
-    return Column(
-      children: [
-        Fox(),
-        Fox(),
-        Fox(),
-      ],
+      color: Colors.blue..alpha(0.3),
+      size: Size(height: 300),
+      child: Stack(
+        children: [
+          Fox(300, Colors.blue),
+          Fox(200, Colors.green),
+          Fox(100, Colors.grey),
+        ],
+      ),
     );
   }
 }
 
 class Fox extends Component {
+  final double size;
+  final Colors color;
   Icon iconRef;
 
-  handleClick(Event e) {
-    if (iconRef.color.color == Colors.black.color) {
-      iconRef.color = Colors.red;
-    } else {
-      iconRef.color = Colors.black;
-    }
-  }
+  Fox(this.size, this.color);
 
   @override
   Widget build() {
     return Container(
-      size: Size.square(50),
-      child: iconRef = Icon(),
+      size: Size.square(size),
+      child: iconRef = Icon(color: color),
     )..gestureDetector.onTap(handleClick);
+  }
+
+  handleClick(Event e) {
+    iconRef.color = Colors.red;
   }
 }

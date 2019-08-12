@@ -9,15 +9,16 @@ class Stack extends Widget {
           element: DivElement(),
           children: children,
         ) {
-    element.style
-      ..flex = '1'
-      ..display = 'grid'
-      ..alignItems = 'stretch';
+    Size().applyToElement(element);
+    element.style..display = 'grid';
 
     for (var child in children) {
-      child.element.style
+      var stackLayer = DivElement();
+      stackLayer.style
         ..gridColumn = '1'
         ..gridRow = '1';
+      element.children.add(stackLayer);
+      stackLayer.children.add(child.element);
     }
   }
 }
