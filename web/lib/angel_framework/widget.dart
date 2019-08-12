@@ -2,8 +2,8 @@ import 'dart:html';
 
 import 'package:meta/meta.dart';
 
-import 'widgets/attributes/widget_attributes.dart';
-export 'widgets/attributes/widget_attributes.dart';
+import 'attributes/widget_attributes.dart';
+export 'attributes/widget_attributes.dart';
 
 abstract class Widget {
   Element element;

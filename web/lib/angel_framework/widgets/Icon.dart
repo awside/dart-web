@@ -1,7 +1,6 @@
 import 'dart:svg';
 
 import '../widget.dart';
-import 'attributes/color.dart';
 
 class Icon extends Widget {
   // WidgetRef _ref;
