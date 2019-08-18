@@ -5,20 +5,20 @@ import 'widget_base.dart';
 
 abstract class Component extends WidgetBase {
   Element parentElement;
-  Widget buildWidget;
+  Widget widget;
 
   Component() {
-    this.buildWidget = build();
+    this.widget = build();
   }
 
   Widget build();
 
   activate(Element parentElement) {
     this.parentElement = parentElement;
-    buildWidget.activate(parentElement);
+    widget.activate(parentElement);
   }
 
   remove() {
-    if (parentElement != null) buildWidget.activate(parentElement);
+    if (parentElement != null) widget.activate(parentElement);
   }
 }

@@ -4,62 +4,32 @@ import 'package:meta/meta.dart';
 
 import '../angel.dart';
 
-class ListViewItem {
-  int index;
-  Element divWrapper;
-  Element parentElement;
-  Widget item;
-  Widget spacer;
+// class ListViewItem {
+//   Element divWrapper;
+//   Element parentElement;
+//   Widget item;
+//   Widget spacer;
 
-  ListViewItem(this.index, this.parentElement, this.item, this.spacer) {
-    divWrapper = DivElement();
-    divWrapper.children.addAll([item.element, spacer.element]);
-  }
+//   ListViewItem(this.parentElement, this.item, this.spacer) {
+//     divWrapper = DivElement();
+//   }
 
-  add() {
-    parentElement.children.insert(index, divWrapper);
-    // Anim({
-    //   'targets': item.element,
-    //   'duration': 300,
-    //   'height': [0, item.element.offsetHeight],
-    //   'opacity': [0, 1],
-    //   'easing': 'easeInQuad',
-    // });
-    // Anim({
-    //   'targets': spacer.element,
-    //   'duration': 300,
-    //   'height': [0, spacer.element.offsetHeight],
-    //   'opacity': [0, 1],
-    //   'easing': 'easeInQuad',
-    // });
-  }
+//   add({int at}) {
+//     at != null
+//         ? parentElement.children.insert(at, divWrapper)
+//         : parentElement.children.add(divWrapper);
+//     item.activate(divWrapper);
+//     spacer.activate(divWrapper);
+//   }
 
-  remove() {
-    // Anim({
-    //   'targets': item.element,
-    //   'duration': 300,
-    //   'height': 0,
-    //   'opacity': 0,
-    //   'easing': 'easeOutQuad',
-    // });
-    // Anim({
-    //   'targets': spacer.element,
-    //   'duration': 300,
-    //   'height': 0,
-    //   'opacity': 0,
-    //   'easing': 'easeOutQuad',
-    //   'complete': () {
-    //     parentElement.children.remove(divWrapper);
-    //   }
-    // });
-  }
-}
+//   remove() {}
+// }
 
 class ListView extends Component {
   int itemCount;
   Widget Function(int index) itemBuilder;
   Widget spacer;
-  List<ListViewItem> listViewItems = [];
+  List<WidgetBase> listViewItems = [];
 
   ListView({
     @required this.itemCount,
@@ -71,15 +41,16 @@ class ListView extends Component {
 
   @override
   Widget build() {
-    for (var i = 0; i < itemCount; i++) {
+    for (int i = 0; i < itemCount; i++) {
+      listViewItems.add(ListViewItem(
+        item: null,
+        spacer: null,
+      ));
     }
-    return Column();
+    return Column(children: listViewItems);
   }
 
-  add() {
+  add() {}
 
-  }
-
-  insertAt(int index) {
-  }
+  insertAt(int index) {}
 }
