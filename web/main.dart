@@ -4,44 +4,25 @@ import 'dart:html';
 import 'lib/angel_framework/angel.dart';
 
 void main() {
-  querySelector('#output').children.add(MyBox().element);
+  MyBox()..activate(querySelector('#output'));
 }
 
 class MyBox extends Component {
-  MyBox() {
-    Timer(Duration(milliseconds: 300), () {});
-  }
+  Container cRef;
 
   @override
   Widget build() {
     return Container(
-      color: Colors.blue..alpha(0.3),
-      size: Size(height: 300),
-      child: Stack(
-        children: [
-          TopFox(),
-        ],
+      color: Colors.black,
+      size: Size(width: 100, height: 100),
+      child: cRef = Container(
+        color: Colors.red,
+        size: Size(width: 50, height: 50),
+        endAnimation: Anim({
+          'duration': 600,
+          'width': 80,
+        }),
       ),
     );
-  }
-}
-
-class TopFox extends Component {
-  Icon iconRef;
-
-  @override
-  Widget build() {
-    return Container(
-      size: Size(height: 44),
-      flex: Flex(horizontal: FlexPosition.center),
-      child: Container(
-        size: Size.square(44),
-        child: iconRef = Icon(color: Colors.grey),
-      )..gestureDetector.onTap(handleClick),
-    );
-  }
-
-  handleClick(Event e) {
-    iconRef.color = Colors.red;
   }
 }

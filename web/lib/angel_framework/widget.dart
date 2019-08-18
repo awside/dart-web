@@ -1,48 +1,56 @@
 import 'dart:html';
 
-import 'package:meta/meta.dart';
-
+import 'anime.dart';
 import 'attributes/widget_attributes.dart';
+import 'widget_base.dart';
+
+export 'anime.dart';
 export 'attributes/widget_attributes.dart';
 
-abstract class Widget {
+abstract class Widget extends WidgetBase {
+  Element parentElement;
   Element element;
   Widget child;
   List<Widget> children;
-  GestureDetector gestureDetector;
-
-  Widget.component() {
-    _sharedStyles();
-  }
+  List<WidgetAttribute> widgetAttributes = [];
+  Anim startAnimation;
+  Anim endAnimation;
 
   Widget({
-    @required this.element,
-    Widget child,
-    List<Widget> children,
-  }) {
-    if (child != null) {
-      this.child = child;
-      element.children.add(child.element);
+    this.element,
+    this.child,
+    this.children,
+  });
+
+  activate(Element parentElement) {
+    this.parentElement = parentElement;
+    parentElement.children.add(element);
+    for (var widgetAttr in widgetAttributes) {
+      if (widgetAttr != null) apply(widgetAttr);
     }
-    if (children != null) {
-      this.children = children;
-      element.children.addAll(children.map((v) => v.element).toList());
+    if (startAnimation != null) {
+      startAnimation.addAnimationData({
+        'targets': element,
+      });
+      startAnimation.start();
     }
-    _sharedStyles();
+    child?.activate(element);
+    children?.forEach((child) => child.activate(element));
   }
 
-  passThrough(bool value) {
-    element.style.pointerEvents = value ? 'none' : 'auto';
-    for (var child in element.querySelectorAll('*')) {
-      child.style.pointerEvents = value ? 'none' : 'auto';
+  remove() {
+    if (endAnimation != null) {
+      endAnimation.addAnimationData({
+        'targets': element,
+        'complete': () => parentElement.children.remove(element),
+      });
+      endAnimation.start();
+    } else {
+      parentElement.children.remove(element);
     }
   }
 
-  _sharedStyles() {
-    gestureDetector = GestureDetector(element);
-  }
-
-  set apply(WidgetAttribute widgetAttribute) {
+  apply(WidgetAttribute widgetAttribute) {
     widgetAttribute.applyToElement(element);
   }
 }

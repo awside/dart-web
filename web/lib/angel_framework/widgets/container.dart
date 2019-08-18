@@ -11,16 +11,24 @@ class Container extends Widget {
     Flex flex,
     Border border,
     Shadow shadow,
+    GestureDetector gestureDetector,
+    Anim startAnimation,
+    Anim endAnimation,
   }) : super(element: DivElement(), child: child) {
     element.style
       ..display = 'flex'
       ..overflow = 'hidden'
       ..boxSizing = 'border-box'
       ..background = color?.color ?? Colors.transparent.color;
-    (size ?? Size()).applyToElement(element);
-    padding?.applyToElement(element);
-    flex?.applyToElement(element);
-    border?.applyToElement(element);
-    shadow?.applyToElement(element);
+    widgetAttributes.addAll([
+      size,
+      padding,
+      flex,
+      border,
+      shadow,
+      gestureDetector,
+    ]);
+    this.startAnimation = startAnimation;
+    this.endAnimation = endAnimation;
   }
 }

@@ -10,9 +10,9 @@ class Label extends Widget {
     FontWeight fontWeight,
     bool italic,
   }) : super(element: SpanElement()) {
-    text = text ?? '';
-    fontSize = fontSize ?? 16;
-    italic = italic ?? false;
+    this.text = text ?? '';
+    this.fontSize = fontSize ?? 16;
+    this.italic = italic ?? false;
     element.style.color = color?.color ?? Colors.black.color;
     fontWeight?.applyToElement(element);
   }

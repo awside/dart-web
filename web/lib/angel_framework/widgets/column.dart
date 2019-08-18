@@ -7,7 +7,8 @@ class Column extends Widget {
     List<Widget> children,
   }) : super(element: DivElement(), children: children) {
     element.style
-      // ..flex = '1'
+      ..width = '100%'
+      ..height = '100%'
       ..display = 'flex'
       ..flexDirection = 'column';
   }

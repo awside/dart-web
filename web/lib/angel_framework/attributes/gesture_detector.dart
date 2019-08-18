@@ -2,28 +2,15 @@ import 'dart:html';
 
 import 'widget_attribute.dart';
 
-// enum GestureEvent { onTap }
-
 class GestureDetector extends WidgetAttribute {
-  final Element element;
+  Function(Event) onTap;
 
-  GestureDetector(this.element);
-
-  GestureDetector onTap(Function(Event) fun) {
-    element.addEventListener('click', fun);
-    return this;
-  }
-
-  // create(Map<GestureEvent, Function(Event)> gesture) {
-  //   gesture.forEach((k, v) {
-  //     switch (k) {
-  //       case GestureEvent.onTap:
-  //         onTap(v);
-  //         break;
-  //     }
-  //   });
-  // }
+  GestureDetector({
+    this.onTap,
+  });
 
   @override
-  applyToElement(Element element) => null;
+  applyToElement(Element element) {
+    if (onTap != null) element.addEventListener('click', onTap);
+  }
 }
