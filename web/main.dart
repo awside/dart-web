@@ -1,12 +1,12 @@
 import 'dart:html';
 
-import 'lib2/angel/angel.dart';
+import 'lib/angel/angel.dart';
 
 void main() {
   MyBox()..attach(querySelector('#output'));
 }
 
-class MyBox extends Component {
+class MyBox extends Widget {
   Container cRef;
 
   handleClick(e) {
@@ -15,43 +15,9 @@ class MyBox extends Component {
 
   @override
   Widget build() {
-    return Container(
-      gestureDetector: GestureDetector(onTap: handleClick),
-      size: Size(width: '100%', height: 100),
-      color: Colors.green,
-      startAnimation: Anim({
-        'delay': 500,
-        'duration': 300,
-        'height': 500,
-      }),
-      endAnimation: Anim({
-        'duration': 300,
-        'height': 100,
-      }),
-      child: cRef = Container(
-        size: Size(width: '80%', height: 50),
-        color: Colors.blue,
-        startAnimation: Anim({
-          'duration': 300,
-          'height': 300,
-        }),
-        endAnimation: Anim({
-          'duration': 300,
-          'height': 50,
-        }),
-        child: Container(
-          size: Size(width: '40%', height: 20),
-          color: Colors.red,
-          startAnimation: Anim({
-            'duration': 300,
-            'height': 100,
-          }),
-          endAnimation: Anim({
-            'duration': 300,
-            'height': 20,
-          }),
-        ),
-      ),
+    return cRef = Container(
+      color: Colors.blue,
+      size: Size(width: 200, height: 200),
     );
   }
 }

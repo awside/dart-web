@@ -3,7 +3,6 @@ import 'dart:html';
 import '../bloc/bloc.dart';
 import 'anime.dart';
 import 'attributes/widget_attributes.dart';
-
 export 'anime.dart';
 export 'attributes/widget_attributes.dart';
 
@@ -18,9 +17,19 @@ abstract class Widget {
   var bloc = Bloc<bool>();
   int removedChildrenCounter;
 
-  Widget(this.element, this.children) {
-    children.removeWhere((child) => child == null);
+  Widget() {
+    var widget = build();
+    if (widget != null) {
+      parent = widget.parent;
+      element = widget.element;
+      children = widget.children;
+      widgetAttributes = widget.widgetAttributes;
+      startAnimation = widget.startAnimation;
+      endAnimation = widget.endAnimation;
+    }
   }
+
+  Widget build();
 
   attach(Element parent) {
     this.parent = parent;
@@ -35,16 +44,21 @@ abstract class Widget {
   }
 
   animate() {
-    if (startAnimation == null) return;
-    startAnimation.addAnimationData({
-      'targets': element,
-      'complete': () {
-        for (var child in children) {
-          child.animate();
-        }
-      },
-    });
-    startAnimation.start();
+    if (startAnimation != null) {
+      startAnimation.addAnimationData({
+        'targets': element,
+        'complete': () {
+          for (var child in children) {
+            child.animate();
+          }
+        },
+      });
+      startAnimation.start();
+    } else {
+      for (var child in children) {
+        child.animate();
+      }
+    }
   }
 
   remove({bool top = true}) {
@@ -81,6 +95,13 @@ abstract class Widget {
       endAnimation.start();
     } else {
       bloc.sink.add(true);
+      if (top) {
+        for (var child in children) {
+          child.parent.children.remove(child.element);
+          child.bloc.close();
+        }
+        parent?.children?.remove(element);
+      }
     }
   }
 

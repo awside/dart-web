@@ -14,21 +14,28 @@ class Container extends Widget {
     GestureDetector gestureDetector,
     Anim startAnimation,
     Anim endAnimation,
-  }) : super(DivElement(), [child]) {
+  }) {
+    element = DivElement();
     element.style
       ..display = 'flex'
       ..overflow = 'hidden'
       ..boxSizing = 'border-box'
       ..background = color?.color ?? Colors.transparent.color;
-    widgetAttributes.addAll([
+    children = [child]..removeWhere((e) => e == null);
+    widgetAttributes = [
       size,
       padding,
       flex,
       border,
       shadow,
       gestureDetector,
-    ]);
+    ]..removeWhere((e) => e == null);
     this.startAnimation = startAnimation;
     this.endAnimation = endAnimation;
+  }
+
+  @override
+  Widget build() {
+    return null;
   }
 }

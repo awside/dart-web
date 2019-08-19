@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 
 import '../angel.dart';
 
-class ListViewItem extends Component {
+class ListViewItem extends Widget {
   Widget item;
   Widget spacer;
 
