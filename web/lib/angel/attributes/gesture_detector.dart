@@ -1,16 +1,22 @@
 import 'dart:html';
 
+import '../widget.dart';
 import 'widget_attribute.dart';
 
 class GestureDetector extends WidgetAttribute {
-  Function(Event) onTap;
+  Widget widget;
+  Function(Event, Widget) onTap;
 
   GestureDetector({
     this.onTap,
   });
 
+  _onTap(Event event) {
+    onTap(event, widget);
+  }
+
   @override
   applyToElement(Element element) {
-    if (onTap != null) element.addEventListener('click', onTap);
+    if (onTap != null) element.addEventListener('click', _onTap);
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:html';
 
+import 'package:nanoid/non_secure/nanoid.dart';
+
 import '../bloc/bloc.dart';
 import 'anime.dart';
 import 'attributes/widget_attributes.dart';
@@ -7,6 +9,7 @@ export 'anime.dart';
 export 'attributes/widget_attributes.dart';
 
 abstract class Widget {
+  String id;
   Element parent;
   Element element;
   List<Widget> children = [];
@@ -18,6 +21,7 @@ abstract class Widget {
   int removedChildrenCounter;
 
   Widget() {
+    id = nanoid();
     var widget = build();
     if (widget != null) {
       parent = widget.parent;
@@ -31,9 +35,11 @@ abstract class Widget {
 
   Widget build();
 
-  attach(Element parent) {
+  attach(Element parent, {int at}) {
     this.parent = parent;
-    parent.children.add(element);
+    at != null
+        ? parent.children.insert(at, element)
+        : parent.children.add(element);
     for (var widgetAttr in widgetAttributes) {
       if (widgetAttr != null) apply(widgetAttr);
     }
@@ -108,5 +114,8 @@ abstract class Widget {
 
   apply(WidgetAttribute widgetAttribute) {
     widgetAttribute.applyToElement(element);
+    if (widgetAttribute is GestureDetector) {
+      widgetAttribute.widget = this;
+    }
   }
 }
