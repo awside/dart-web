@@ -7,17 +7,33 @@ void main() {
 }
 
 class MyBox extends Widget {
-  Container cRef;
-
-  handleClick(e) {
-    cRef.remove();
-  }
+  ListView listRef;
 
   @override
   Widget build() {
-    return cRef = Container(
-      color: Colors.blue,
-      size: Size(width: 200, height: 200),
+    return listRef = ListView(
+      itemCount: 5,
+      itemBuilder: (index) {
+        return Container(
+          gestureDetector: GestureDetector(
+            onTap: (f) {
+              listRef.removeListItem(index);
+            },
+          ),
+          color: Colors.green,
+          size: Size(width: '100%', height: 0),
+          startAnimation: Anim({
+            'duration': 300,
+            'height': 50,
+            'easing': 'easeInQuad',
+          }),
+          endAnimation: Anim({
+            'duration': 300,
+            'height': 0,
+            'easing': 'easeOutQuad',
+          }),
+        );
+      },
     );
   }
 }

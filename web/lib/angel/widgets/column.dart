@@ -12,7 +12,7 @@ class Column extends Widget {
       ..height = '100%'
       ..display = 'flex'
       ..flexDirection = 'column';
-    children = [...children]..removeWhere((e) => e == null);
+    this.children = [...children]..removeWhere((e) => e == null);
   }
 
   @override

@@ -41,6 +41,7 @@ abstract class Widget {
       child.attach(element);
     }
     removedChildrenCounter = 0;
+    animate();
   }
 
   animate() {
