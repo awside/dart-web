@@ -35,7 +35,11 @@ class ListView extends Widget {
   }
 
   removeListItem(Widget widget) {
-    var listItem = listViewItems.firstWhere((item) => item == widget);
+    var listItem = listViewItems.firstWhere(
+      (item) => item == widget,
+      orElse: () => null,
+    );
+    if (listItem == null) return;
     listItem.remove();
     listViewItems.remove(listItem);
     itemCount = listViewItems.length;
