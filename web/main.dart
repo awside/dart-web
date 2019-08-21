@@ -6,6 +6,8 @@ void main() {
   MyBox()..attach(querySelector('#output'));
 }
 
+
+
 class MyBox extends Widget {
   ListView listRef;
 
@@ -34,13 +36,15 @@ class MyBox extends Widget {
               startAnimation: Anim({
                 'duration': 300,
                 'height': 50,
-                'padding': 10,
+                'paddingTop': 10,
+                'paddingBottom': 10,
                 'easing': 'easeOutBounce',
               }),
               endAnimation: Anim({
                 'duration': 300,
                 'height': 0,
-                'padding': 0,
+                'paddingTop': 0,
+                'paddingBottom': 0,
                 'easing': 'easeOutBounce',
               }),
               child: Container(
