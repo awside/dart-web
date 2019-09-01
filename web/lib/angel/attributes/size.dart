@@ -7,8 +7,8 @@ class Size extends WidgetAttribute {
   dynamic height;
 
   Size({
-    this.width = '100%',
-    this.height = '100%',
+    this.width = 0,
+    this.height = 0,
   });
 
   Size.square(double value) {

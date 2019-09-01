@@ -8,12 +8,18 @@ class ScreenWidthController {
   final _streamController = StreamController<ScreenType>.broadcast();
   StreamSink<ScreenType> get _sink => _streamController.sink;
   Stream<ScreenType> get stream => _streamController.stream;
+  ScreenType currentScreenType;
 
   static final ScreenWidthController instance =
       ScreenWidthController._privateConstructor();
   ScreenWidthController._privateConstructor() {
+    currentScreenType = getScreenType();
     window.addEventListener('resize', (f) {
-      _sink.add(getScreenType());
+      var newScreenType = getScreenType();
+      if (newScreenType != currentScreenType) {
+        _sink.add(newScreenType);
+        currentScreenType = newScreenType;
+      }
     });
   }
 

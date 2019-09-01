@@ -2,8 +2,8 @@ import 'dart:html';
 
 import '../widget.dart';
 
-class Column extends Widget {
-  Column({
+class VStack extends Widget {
+  VStack({
     List<Widget> children,
   }) {
     element = DivElement();

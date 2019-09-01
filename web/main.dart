@@ -3,58 +3,39 @@ import 'dart:html';
 import 'lib/angel/angel.dart';
 
 void main() {
-  MyBox()..attach(querySelector('#output'));
+  Root(querySelector('#output'), MyBox());
 }
 
-
-
 class MyBox extends Widget {
-  ListView listRef;
+  Container cRef;
+
+  @override
+  whenPhone() {
+    cRef = replaceWith(
+      Container(
+        size: Size(height: 500),
+        color: Colors.green,
+        flex: Flex(vertical: FlexPosition.center),
+        padding: Padding.only(left: 20, right: 20),
+        child: Container(
+          color: Colors.blue,
+          size: Size(height: 20),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build() {
-    return Column(
-      children: [
-        Container(
-          color: Colors.black,
-          size: Size(height: 50, width: 100),
-          gestureDetector: GestureDetector(onTap: (e, w) {
-            listRef.add();
-          }),
-        ),
-        listRef = ListView(
-          itemCount: 5,
-          itemBuilder: () {
-            return Container(
-              gestureDetector: GestureDetector(
-                onTap: (e, widget) {
-                  listRef.removeListItem(widget);
-                },
-              ),
-              color: Colors.white,
-              size: Size(width: '100%', height: 0),
-              startAnimation: Anim({
-                'duration': 300,
-                'height': 50,
-                'paddingTop': 10,
-                'paddingBottom': 10,
-                'easing': 'easeOutBounce',
-              }),
-              endAnimation: Anim({
-                'duration': 300,
-                'height': 0,
-                'paddingTop': 0,
-                'paddingBottom': 0,
-                'easing': 'easeOutBounce',
-              }),
-              child: Container(
-                color: Colors.blue,
-                size: Size(width: '100%', height: '100%'),
-              ),
-            );
-          },
-        ),
-      ],
+    return Container(
+      size: Size(height: 50),
+      color: Colors.green,
+      flex: Flex(vertical: FlexPosition.center),
+      padding: Padding.only(left: 20, right: 20),
+      child: Container(
+        color: Colors.blue,
+        size: Size(height: 20),
+      ),
     );
   }
 }

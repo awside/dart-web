@@ -1,20 +1,20 @@
 import 'dart:js';
 
 class Anim {
-  Map<String, dynamic> _animationData;
+  Map<String, dynamic> animationData;
 
-  Anim(this._animationData);
+  Anim(this.animationData);
 
-  Anim.start(this._animationData) {
+  Anim.start(this.animationData) {
     start();
   }
 
   start() {
-    context.callMethod('anime', [JsObject.jsify(_animationData)]);
+    context.callMethod('anime', [JsObject.jsify(animationData)]);
   }
 
   addAnimationData(Map<String, dynamic> animationData) {
-    _animationData.addAll(animationData);
+    animationData.addAll(animationData);
   }
 }
 

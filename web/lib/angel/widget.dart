@@ -2,113 +2,68 @@ import 'dart:html';
 
 import 'package:nanoid/non_secure/nanoid.dart';
 
-import '../bloc/bloc.dart';
-import 'anime.dart';
+import '../extra/screen_width.dart';
 import 'attributes/widget_attributes.dart';
 export 'anime.dart';
 export 'attributes/widget_attributes.dart';
 
 abstract class Widget {
   String id;
-  Element parent;
+  Widget parent;
   Element element;
-  List<Widget> children = [];
-  List<WidgetAttribute> widgetAttributes = [];
-  Anim startAnimation;
-  Anim endAnimation;
-
-  var bloc = Bloc<bool>();
-  int removedChildrenCounter;
+  List<Widget> children;
+  List<WidgetAttribute> widgetAttributes;
 
   Widget() {
     id = nanoid();
     var widget = build();
-    if (widget != null) {
-      parent = widget.parent;
-      element = widget.element;
-      children = widget.children;
-      widgetAttributes = widget.widgetAttributes;
-      startAnimation = widget.startAnimation;
-      endAnimation = widget.endAnimation;
+    if (widget != null) _transformTo(widget);
+    ScreenWidthController.instance.stream.listen((screenType) {
+      switch (screenType) {
+        case ScreenType.phone:
+          whenPhone();
+          break;
+        case ScreenType.tablet:
+          whenTablet();
+          break;
+        case ScreenType.desktop:
+          whenDesktop();
+          break;
+      }
+    });
+  }
+
+  _transformTo(Widget widget) {
+    id = widget.id;
+    element = widget.element;
+    children = widget.children;
+    widgetAttributes = widget.widgetAttributes;
+  }
+
+  _reAttach() {
+    for (var widgetAttr in widgetAttributes ?? []) {
+      if (widgetAttr != null) apply(widgetAttr);
+    }
+    whenAttached();
+    for (var child in children) {
+      child.attach(this);
     }
   }
 
   Widget build();
 
-  attach(Element parent, {int at}) {
+
+  attach(Widget parent, {int at}) {
     this.parent = parent;
     at != null
-        ? parent.children.insert(at, element)
-        : parent.children.add(element);
-    for (var widgetAttr in widgetAttributes) {
+        ? parent.element.children.insert(at, element)
+        : parent.element.children.add(element);
+    for (var widgetAttr in widgetAttributes ?? []) {
       if (widgetAttr != null) apply(widgetAttr);
     }
+    whenAttached();
     for (var child in children) {
-      child.attach(element);
-    }
-    removedChildrenCounter = 0;
-    animate();
-  }
-
-  animate() {
-    if (startAnimation != null) {
-      startAnimation.addAnimationData({
-        'targets': element,
-        'complete': () {
-          for (var child in children) {
-            child.animate();
-          }
-        },
-      });
-      startAnimation.start();
-    } else {
-      for (var child in children) {
-        child.animate();
-      }
-    }
-  }
-
-  remove({bool top = true}) {
-    if (children.isNotEmpty) {
-      for (var child in children) {
-        child.bloc.stream.listen((f) {
-          removedChildrenCounter += 1;
-          if (removedChildrenCounter == children.length) {
-            _removeAnimation(top: top);
-          }
-        });
-        child.remove(top: false);
-      }
-    } else {
-      _removeAnimation(top: top);
-    }
-  }
-
-  _removeAnimation({bool top = true}) {
-    if (endAnimation != null) {
-      endAnimation.addAnimationData({
-        'targets': element,
-        'complete': () {
-          bloc.sink.add(true);
-          if (top) {
-            for (var child in children) {
-              child.parent.children.remove(child.element);
-              child.bloc.close();
-            }
-            parent?.children?.remove(element);
-          }
-        },
-      });
-      endAnimation.start();
-    } else {
-      bloc.sink.add(true);
-      if (top) {
-        for (var child in children) {
-          child.parent.children.remove(child.element);
-          child.bloc.close();
-        }
-        parent?.children?.remove(element);
-      }
+      child.attach(this);
     }
   }
 
@@ -118,4 +73,21 @@ abstract class Widget {
       widgetAttribute.widget = this;
     }
   }
+
+  Widget replaceWith(Widget widget) {
+    var index = parent.element.children.indexOf(element);
+    parent.element.children.remove(element);
+    _transformTo(widget);
+    parent.element.children.insert(index, element);
+    _reAttach();
+    return this;
+  }
+
+  whenAttached() {}
+
+  whenPhone() {}
+
+  whenTablet() {}
+
+  whenDesktop() {}
 }

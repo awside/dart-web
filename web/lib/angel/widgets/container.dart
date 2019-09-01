@@ -22,6 +22,7 @@ class Container extends Widget {
       ..boxSizing = 'border-box'
       ..background = color?.color ?? Colors.transparent.color;
     children = [child]..removeWhere((e) => e == null);
+    size?.width = '100%';
     widgetAttributes = [
       size,
       padding,
@@ -30,8 +31,6 @@ class Container extends Widget {
       shadow,
       gestureDetector,
     ]..removeWhere((e) => e == null);
-    this.startAnimation = startAnimation;
-    this.endAnimation = endAnimation;
   }
 
   @override
